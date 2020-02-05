@@ -3,5 +3,5 @@
 
 <GridPane fx:controller="sample.Controller" onKeyPressed="#handleKeyPressed"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-    <Canvas fx:id="canvas" width="500" height="500"/>
+    <Canvas fx:id="canvas"/>
 </GridPane>
