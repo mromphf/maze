@@ -1,7 +1,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.canvas.Canvas?>
 
-<GridPane fx:controller="sample.Controller" onKeyPressed="#handleKeyPressed"
+<GridPane fx:controller="Controller" onKeyPressed="#handleKeyPressed"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
     <Canvas fx:id="canvas"/>
 </GridPane>

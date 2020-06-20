@@ -1,5 +1,3 @@
-package sample;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
@@ -16,7 +14,7 @@ public class Controller implements Initializable {
     @FXML
     private Canvas canvas;
 
-    private Image blockImg = new Image(getClass().getResourceAsStream("brown-block.png"));
+    private final Image blockImg = new Image(getClass().getResourceAsStream("brown-block.png"));
     private GraphicsContext context;
     private double screenHeight;
     private double screenWidth;
@@ -30,7 +28,7 @@ public class Controller implements Initializable {
         canvas.setWidth(screenWidth);
 
         context = canvas.getGraphicsContext2D();
-        context.drawImage(blockImg, 0, 0,100, 100);
+        context.drawImage(blockImg, 0, 0,50, 50);
     }
 
     @FXML
