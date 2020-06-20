@@ -4,7 +4,7 @@ import javafx.scene.shape.ArcType;
 
 public class Player extends GameObject implements Drawable {
 
-    private int velocity = 10;
+    private final int velocity = 10;
 
     public Player(int x, int y) {
         super(x, y);
