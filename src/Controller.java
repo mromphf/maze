@@ -23,9 +23,11 @@ public class Controller implements Initializable {
         final double screenWidth = screen.getWidth();
         canvas.setHeight(screenHeight);
         canvas.setWidth(screenWidth - (screenWidth * 0.2));
-
         GraphicsContext context = canvas.getGraphicsContext2D();
+
+        Player player = new Player(500, 500);
         drawables.forEach(d -> d.draw(context));
+        player.draw(context);
     }
 
     @FXML
@@ -34,10 +36,11 @@ public class Controller implements Initializable {
     }
 
     private List<Drawable> populateDrawables() {
-        List<Drawable> result = new ArrayList<>();
+        List<Drawable> drawables = new ArrayList<>();
         for (int i = 0; i < 1500; i += 50) {
-            result.add(new Block(i, 0));
+            drawables.add(new Block(i, 0));
         }
-        return result;
+        drawables.add(new Block(0, 50));
+        return drawables;
     }
 }
