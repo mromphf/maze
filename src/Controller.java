@@ -7,14 +7,15 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Screen;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
     @FXML
     private Canvas canvas;
-    private final List<Drawable> drawables = populateDrawables();
+    GraphicsContext context;
+    private final List<Drawable> drawables = Maze.make();
+    private final Player player = new Player(500, 500);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -33,14 +34,5 @@ public class Controller implements Initializable {
     @FXML
     public void handleKeyPressed(KeyEvent keyEvent) {
         System.out.println(keyEvent.getCode());
-    }
-
-    private List<Drawable> populateDrawables() {
-        List<Drawable> drawables = new ArrayList<>();
-        for (int i = 0; i < 1500; i += 50) {
-            drawables.add(new Block(i, 0));
-        }
-        drawables.add(new Block(0, 50));
-        return drawables;
     }
 }
