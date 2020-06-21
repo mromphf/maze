@@ -4,7 +4,6 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
@@ -35,13 +34,12 @@ public class Controller implements Initializable {
 
     @FXML
     public void handleKeyPressed(KeyEvent keyEvent) {
-        KeyCode keyCode = keyEvent.getCode();
-        if (keyCode.equals(KeyCode.LEFT)) {
-            player.moveLeft();
-        } else if (keyCode.equals(KeyCode.RIGHT)) {
-            player.moveRight();
-        }
-        player.draw(context);
+        Keyboard.press(keyEvent.getCode());
+    }
+
+    @FXML
+    public void handleKeyReleased(KeyEvent keyEvent) {
+        Keyboard.release(keyEvent.getCode());
     }
 
      public class MazeAnimationTimer extends AnimationTimer {
@@ -59,6 +57,7 @@ public class Controller implements Initializable {
             context.setFill(Color.WHITE);
             context.fillRect(0, 0,screenWidth, screenHeight);
             drawables.forEach(d -> d.draw(context));
+            player.move();
             player.draw(context);
         }
     }
