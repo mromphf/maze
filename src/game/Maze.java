@@ -4,20 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Maze {
+
     public static List<Drawable> make() {
+
         List<Drawable> drawables = new ArrayList<>();
-        for (int i = 0; i < 1500; i += 50) {
-            drawables.add(new Block(i, 0));
+
+        for (int x = 0; x < 20; x++) {
+            for (int y = 0; y < 20; y++) {
+                if (x == 0 || y == 0 || x == 19 || y == 19) {
+                    drawables.add(new Block(x * 50, y * 50));
+                }
+                else {
+                    drawables.add(new Empty(x * 50, y * 50));
+                }
+            }
         }
-        for (int i = 0; i < 1050; i += 50) {
-            drawables.add(new Block(0, i));
-        }
-        for (int i = 0; i < 1050; i += 50) {
-            drawables.add(new Block(1500, i));
-        }
-        for (int i = 0; i < 1500; i += 50) {
-            drawables.add(new Block(i, 1050));
-        }
+
         return drawables;
     }
 }

@@ -3,7 +3,7 @@ package game;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class Block extends GameObject implements Drawable {
+public class Block extends GameObject implements Drawable, Tile {
 
     private final Image blockImg = new Image(getClass().getResourceAsStream("brown-block.png"));
 
@@ -16,5 +16,10 @@ public class Block extends GameObject implements Drawable {
     @Override
     public void draw(GraphicsContext context) {
         context.drawImage(blockImg, x, y, width, width);
+    }
+
+    @Override
+    public boolean isPassable() {
+        return false;
     }
 }
