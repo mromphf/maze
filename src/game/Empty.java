@@ -13,7 +13,7 @@ public class Empty extends GameObject implements Drawable, Tile {
 
     @Override
     public void draw(GraphicsContext context) {
-        context.setFill(Color.WHITE);
+        context.setFill(Color.GRAY);
         context.strokeRect(x, y, width, height);
     }
 

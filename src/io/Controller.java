@@ -11,11 +11,14 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
     @FXML
-    private Canvas canvas;
+    private Canvas foreground;
+
+    @FXML
+    private Canvas background;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        new GameLoop(canvas).start();
+        new GameLoop(foreground, background).start();
     }
 
     @FXML
