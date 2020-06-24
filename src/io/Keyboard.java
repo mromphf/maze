@@ -1,3 +1,5 @@
+package io;
+
 import javafx.scene.input.KeyCode;
 
 import java.util.HashMap;

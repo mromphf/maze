@@ -8,7 +8,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("maze.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("io/maze.fxml"));
         Scene scene = new Scene(root);
 
         root.requestFocus();

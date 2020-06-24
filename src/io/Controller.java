@@ -1,3 +1,6 @@
+package io;
+
+import game.GameLoop;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;

@@ -1,3 +1,5 @@
+package game;
+
 import javafx.scene.canvas.GraphicsContext;
 
 public interface Drawable {
