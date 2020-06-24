@@ -3,7 +3,7 @@ package game;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class Empty extends GameObject implements Drawable, Tile {
+public class Empty extends GameObject {
 
     public Empty(int x, int y) {
         super(x, y);
@@ -18,7 +18,7 @@ public class Empty extends GameObject implements Drawable, Tile {
     }
 
     @Override
-    public boolean isPassable() {
-        return true;
+    public boolean collidesWith(GameObject target) {
+        return false;
     }
 }

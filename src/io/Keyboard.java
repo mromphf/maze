@@ -9,7 +9,7 @@ public class Keyboard {
     private static final Map<KeyCode, Boolean> keysPressed = new HashMap<>();
 
     public static boolean isPressed(KeyCode keyCode) {
-        return keysPressed.get(keyCode);
+        return keysPressed.containsKey(keyCode) && keysPressed.get(keyCode);
     }
 
     public static void press(KeyCode keyCode) {

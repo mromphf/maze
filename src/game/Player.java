@@ -6,14 +6,14 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
 
-public class Player extends GameObject implements Drawable {
+public class Player extends GameObject {
 
-    private final int velocity = 10;
+    private final int velocity = 5;
 
     public Player(int x, int y) {
         super(x, y);
-        this.width = 40;
-        this.height = 40;
+        this.width = 35;
+        this.height = 35;
     }
 
     @Override
@@ -22,17 +22,17 @@ public class Player extends GameObject implements Drawable {
         context.fillArc(x, y, width, height, 0, 360, ArcType.ROUND);
     }
 
-    public void move() {
-        if (Keyboard.isPressed(KeyCode.LEFT)) {
+    public void move(Maze maze) {
+        if (Keyboard.isPressed(KeyCode.LEFT) && maze.canMoveHere(new Player(x - velocity, y))) {
             moveLeft();
         }
-        else if (Keyboard.isPressed(KeyCode.RIGHT)) {
+        else if (Keyboard.isPressed(KeyCode.RIGHT) && maze.canMoveHere(new Player(x + velocity, y))) {
             moveRight();
         }
-        else if (Keyboard.isPressed(KeyCode.UP)) {
+        else if (Keyboard.isPressed(KeyCode.UP) && maze.canMoveHere(new Player(x, y - velocity))) {
             moveUp();
         }
-        else if (Keyboard.isPressed(KeyCode.DOWN)) {
+        else if (Keyboard.isPressed(KeyCode.DOWN) && maze.canMoveHere(new Player(x, y + velocity))) {
             moveDown();
         }
     }

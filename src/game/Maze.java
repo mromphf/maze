@@ -5,9 +5,23 @@ import java.util.List;
 
 public class Maze {
 
-    public static List<Drawable> make() {
+    private final List<GameObject> tiles;
 
-        List<Drawable> drawables = new ArrayList<>();
+    public Maze() {
+        tiles = generateTiles();
+    }
+
+    public List<GameObject> getTiles() {
+        return tiles;
+    }
+
+    public boolean canMoveHere(GameObject object) {
+        return this.tiles.stream().noneMatch(t -> t.collidesWith(object));
+    }
+
+    private List<GameObject> generateTiles() {
+
+        List<GameObject> drawables = new ArrayList<>();
 
         for (int x = 0; x < 20; x++) {
             for (int y = 0; y < 20; y++) {
