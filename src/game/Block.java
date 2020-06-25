@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 
 public class Block extends GameObject implements Drawable, Tile {
 
-    private final Image blockImg = new Image(getClass().getResourceAsStream("brown-block.png"));
+    private final Image blockImg = new Image(getClass().getResourceAsStream("../brown-block.png"));
 
     public Block(int x, int y) {
         super(x, y);
