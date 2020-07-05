@@ -15,7 +15,7 @@ public class GameLoop extends AnimationTimer {
     private final double screenWidth;
     private final double screenHeight;
     private final Player player = new Player(500, 500);
-    private final Maze maze = new Maze();
+    private final Maze maze = new Maze(LoadsLevels.generateTiles());
 
     public GameLoop(Canvas fgCanvas, Canvas bgCanvas) {
         Rectangle2D screen = Screen.getPrimary().getBounds();
@@ -33,7 +33,7 @@ public class GameLoop extends AnimationTimer {
         foreground = fgCanvas.getGraphicsContext2D();
         background = bgCanvas.getGraphicsContext2D();
 
-        List<GameObject> tiles = maze.getTiles();
+        List<GameObject> tiles = maze.getGameObjects();
         tiles.forEach(d -> d.draw(background));
     }
 
