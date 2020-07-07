@@ -9,16 +9,16 @@ public class LoadsLevels {
 
         List<GameObject> gameObjects = new ArrayList<>();
 
-        for (int x = 0; x < symbols.length; x++) {
-            for (int y = 0; y < symbols[x].length; y++) {
-                if (symbols[x][y] == 'b') {
-                    gameObjects.add(new Block(x * 50, y * 50));
-                } else if (symbols[x][y] == 's') {
-                    gameObjects.add(new Start(x * 50, y * 50));
-                } else if (symbols[x][y] == 'g') {
-                    gameObjects.add(new Goal(x * 50, y * 50));
+        for (int horizontal = 0; horizontal < symbols.length; horizontal++) {
+            for (int vertical = 0; vertical < symbols[horizontal].length; vertical++) {
+                if (symbols[horizontal][vertical] == 'b') {
+                    gameObjects.add(new Block(vertical * 50, horizontal * 50));
+                } else if (symbols[horizontal][vertical] == 's') {
+                    gameObjects.add(new Start(vertical * 50, horizontal * 50));
+                } else if (symbols[horizontal][vertical] == 'g') {
+                    gameObjects.add(new Goal(vertical * 50, horizontal * 50));
                 } else {
-                    gameObjects.add(new Empty(x * 50, y * 50));
+                    gameObjects.add(new Empty(vertical * 50, horizontal * 50));
                 }
             }
         }
