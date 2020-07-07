@@ -13,6 +13,8 @@ public class LoadsLevels {
             for (int y = 0; y < symbols[x].length; y++) {
                 if (symbols[x][y] == 'b') {
                     drawables.add(new Block(x * 50, y * 50));
+                } else if (symbols[x][y] == 's') {
+                    drawables.add(new Start(x * 50, y * 50));
                 } else {
                     drawables.add(new Empty(x * 50, y * 50));
                 }

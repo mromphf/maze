@@ -15,8 +15,8 @@ public class GameLoop extends AnimationTimer {
     private final GraphicsContext background;
     private final double screenWidth;
     private final double screenHeight;
-    private final Player player = new Player(500, 500);
     private final Maze maze = new Maze(LoadsLevels.generateTiles(File.loadLevel("src/level1.csv")));
+    private final Player player = maze.playerAtStartingLocation();
 
     public GameLoop(Canvas fgCanvas, Canvas bgCanvas) {
         Rectangle2D screen = Screen.getPrimary().getBounds();
