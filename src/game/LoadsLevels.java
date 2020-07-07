@@ -7,20 +7,22 @@ public class LoadsLevels {
 
     public static List<GameObject> generateTiles(char[][] symbols) {
 
-        List<GameObject> drawables = new ArrayList<>();
+        List<GameObject> gameObjects = new ArrayList<>();
 
         for (int x = 0; x < symbols.length; x++) {
             for (int y = 0; y < symbols[x].length; y++) {
                 if (symbols[x][y] == 'b') {
-                    drawables.add(new Block(x * 50, y * 50));
+                    gameObjects.add(new Block(x * 50, y * 50));
                 } else if (symbols[x][y] == 's') {
-                    drawables.add(new Start(x * 50, y * 50));
+                    gameObjects.add(new Start(x * 50, y * 50));
+                } else if (symbols[x][y] == 'g') {
+                    gameObjects.add(new Goal(x * 50, y * 50));
                 } else {
-                    drawables.add(new Empty(x * 50, y * 50));
+                    gameObjects.add(new Empty(x * 50, y * 50));
                 }
             }
         }
 
-        return drawables;
+        return gameObjects;
     }
 }
