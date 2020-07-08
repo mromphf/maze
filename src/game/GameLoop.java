@@ -9,6 +9,8 @@ import javafx.stage.Screen;
 
 import java.util.List;
 
+import static javafx.application.Platform.exit;
+
 public class GameLoop extends AnimationTimer {
 
     private final GraphicsContext foreground;
@@ -43,5 +45,13 @@ public class GameLoop extends AnimationTimer {
         foreground.clearRect(0, 0, screenWidth, screenHeight);
         player.draw(foreground);
         player.move(maze);
+
+        if (player.collidesWith(maze.getGoal())) {
+            gameOver();
+        }
+    }
+
+    private void gameOver() {
+        exit();
     }
 }
