@@ -1,38 +1,38 @@
 package game;
 
 import game.abstraction.Collidable;
-import game.abstraction.GameObject;
+import game.abstraction.Drawable;
+import game.abstraction.Tile;
 import game.concrete.Goal;
 import game.concrete.Player;
 import game.concrete.Start;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Maze {
 
-    private final List<GameObject> gameObjects;
-    private final GameObject startLocation;
-    private final GameObject goal;
+    private final Collection<Tile> tiles;
+    private final Tile startLocation;
+    private final Tile goal;
 
-    public Maze(List<GameObject> gameObjects) {
-        this.gameObjects = gameObjects;
-        startLocation = gameObjects.stream().filter(o -> o instanceof Start).findFirst().get();
-        goal = gameObjects.stream().filter(o -> o instanceof Goal).findFirst().get();
+    public Maze(Collection<Tile> tiles) {
+        this.tiles = tiles;
+        startLocation = tiles.stream().filter(o -> o instanceof Start).findFirst().get();
+        goal = tiles.stream().filter(o -> o instanceof Goal).findFirst().get();
     }
 
-    public List<GameObject> getGameObjects() {
-        return gameObjects;
+    public Collection<? extends Drawable> backgroundGraphics() {
+        return tiles;
     }
 
     public Collection<? extends Collidable> allObstacles() {
-        return gameObjects.stream().filter(Objects::nonNull).collect(Collectors.toSet());
+        return tiles.stream().filter(Objects::nonNull).collect(Collectors.toSet());
     }
 
-    public GameObject getGoal() {
-        return goal;
+    public boolean gameIsOver(Collidable player) {
+        return player.collidesWith(goal);
     }
 
     public Player playerAtStartingLocation() {

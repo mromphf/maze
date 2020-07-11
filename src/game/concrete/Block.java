@@ -1,10 +1,11 @@
 package game.concrete;
 
 import game.abstraction.GameObject;
+import game.abstraction.Tile;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class Block extends GameObject {
+public class Block extends GameObject implements Tile {
 
     private final Image blockImg = new Image(getClass().getResourceAsStream("../../brown-block.png"));
 

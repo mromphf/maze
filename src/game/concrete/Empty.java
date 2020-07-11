@@ -2,10 +2,11 @@ package game.concrete;
 
 import game.abstraction.Collidable;
 import game.abstraction.GameObject;
+import game.abstraction.Tile;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class Empty extends GameObject {
+public class Empty extends GameObject implements Tile {
 
     public Empty(int x, int y) {
         super(x, y);

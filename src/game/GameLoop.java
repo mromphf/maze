@@ -1,7 +1,6 @@
 package game;
 
 import game.abstraction.Collidable;
-import game.abstraction.GameObject;
 import game.concrete.Player;
 import io.File;
 import javafx.animation.AnimationTimer;
@@ -11,7 +10,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Screen;
 
 import java.util.Collection;
-import java.util.List;
 
 import static javafx.application.Platform.exit;
 
@@ -41,8 +39,7 @@ public class GameLoop extends AnimationTimer {
         foreground = fgCanvas.getGraphicsContext2D();
         background = bgCanvas.getGraphicsContext2D();
 
-        List<GameObject> tiles = maze.getGameObjects();
-        tiles.forEach(d -> d.draw(background));
+        maze.backgroundGraphics().forEach(d -> d.draw(background));
     }
 
     @Override
@@ -51,7 +48,7 @@ public class GameLoop extends AnimationTimer {
         player.draw(foreground);
         player.move(obstacles);
 
-        if (player.collidesWith(maze.getGoal())) {
+        if (maze.gameIsOver(player)) {
             gameOver();
         }
     }
