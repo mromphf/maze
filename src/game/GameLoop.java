@@ -39,6 +39,9 @@ public class GameLoop extends AnimationTimer {
         foreground = fgCanvas.getGraphicsContext2D();
         background = bgCanvas.getGraphicsContext2D();
 
+        foreground.translate(225, 35);
+        background.translate(225, 35);
+
         maze.backgroundGraphics().forEach(d -> d.draw(background));
     }
 
