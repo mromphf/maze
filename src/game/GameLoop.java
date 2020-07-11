@@ -14,7 +14,6 @@ import javafx.stage.Screen;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static javafx.application.Platform.exit;
 
@@ -25,7 +24,7 @@ public class GameLoop extends AnimationTimer {
     private final double screenWidth;
     private final double screenHeight;
     private final Map<Integer, List<Character>> levelFile = File.loadLevel("src/level1.csv");
-    private final List<Tile> tiles = LoadsLevels.generateTiles(levelFile).stream().flatMap(List::stream).collect(Collectors.toList());
+    private final Collection<Tile> tiles = LoadsLevels.generateTiles(levelFile);
     private final Player player;
     private final Goal goal;
 
