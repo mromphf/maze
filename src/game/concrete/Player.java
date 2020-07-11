@@ -1,12 +1,17 @@
-package game;
+package game.concrete;
 
+import game.abstraction.Collidable;
+import game.abstraction.GameObject;
+import game.abstraction.Movable;
 import io.Keyboard;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
 
-public class Player extends GameObject {
+import java.util.Collection;
+
+public class Player extends GameObject implements Movable {
 
     private final int velocity = 5;
 
@@ -22,19 +27,23 @@ public class Player extends GameObject {
         context.fillArc(x, y, width, height, 0, 360, ArcType.ROUND);
     }
 
-    public void move(Maze maze) {
-        if (Keyboard.isPressed(KeyCode.LEFT) && maze.canMoveHere(new Player(x - velocity, y))) {
+    public void move(Collection<? extends Collidable> obstacles) {
+        if (Keyboard.isPressed(KeyCode.LEFT) && canMoveHere(obstacles, new Player(x - velocity, y))) {
             moveLeft();
         }
-        else if (Keyboard.isPressed(KeyCode.RIGHT) && maze.canMoveHere(new Player(x + velocity, y))) {
+        else if (Keyboard.isPressed(KeyCode.RIGHT) && canMoveHere(obstacles, new Player(x + velocity, y))) {
             moveRight();
         }
-        else if (Keyboard.isPressed(KeyCode.UP) && maze.canMoveHere(new Player(x, y - velocity))) {
+        else if (Keyboard.isPressed(KeyCode.UP) && canMoveHere(obstacles, new Player(x, y - velocity))) {
             moveUp();
         }
-        else if (Keyboard.isPressed(KeyCode.DOWN) && maze.canMoveHere(new Player(x, y + velocity))) {
+        else if (Keyboard.isPressed(KeyCode.DOWN) && canMoveHere(obstacles, new Player(x, y + velocity))) {
             moveDown();
         }
+    }
+
+    private boolean canMoveHere(Collection<? extends Collidable> obstacles, Collidable tryingToMoveHere) {
+        return obstacles.stream().noneMatch(o -> o.collidesWith(tryingToMoveHere));
     }
 
     private void moveLeft() {

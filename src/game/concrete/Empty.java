@@ -1,5 +1,7 @@
-package game;
+package game.concrete;
 
+import game.abstraction.Collidable;
+import game.abstraction.GameObject;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -18,7 +20,7 @@ public class Empty extends GameObject {
     }
 
     @Override
-    public boolean collidesWith(GameObject target) {
+    public boolean collidesWith(Collidable c) {
         return false;
     }
 }

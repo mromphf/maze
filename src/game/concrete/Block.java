@@ -1,11 +1,12 @@
-package game;
+package game.concrete;
 
+import game.abstraction.GameObject;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Block extends GameObject {
 
-    private final Image blockImg = new Image(getClass().getResourceAsStream("../brown-block.png"));
+    private final Image blockImg = new Image(getClass().getResourceAsStream("../../brown-block.png"));
 
     public Block(int x, int y) {
         super(x, y);

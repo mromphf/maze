@@ -1,6 +1,15 @@
 package game;
 
+import game.abstraction.Collidable;
+import game.abstraction.GameObject;
+import game.concrete.Goal;
+import game.concrete.Player;
+import game.concrete.Start;
+
+import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Maze {
 
@@ -18,15 +27,15 @@ public class Maze {
         return gameObjects;
     }
 
+    public Collection<? extends Collidable> allObstacles() {
+        return gameObjects.stream().filter(Objects::nonNull).collect(Collectors.toSet());
+    }
+
     public GameObject getGoal() {
         return goal;
     }
 
     public Player playerAtStartingLocation() {
-        return new Player(startLocation.x + 7, startLocation.y + 7);
-    }
-
-    public boolean canMoveHere(GameObject object) {
-        return this.gameObjects.stream().noneMatch(t -> t.collidesWith(object));
+        return new Player(startLocation.getX() + 7, startLocation.getY() + 7);
     }
 }
