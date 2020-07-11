@@ -24,4 +24,14 @@ public class Start extends GameObject implements Tile {
     public boolean collidesWith(Collidable target) {
         return false;
     }
+
+    @Override
+    public boolean isStartLocation() {
+        return true;
+    }
+
+    @Override
+    public boolean isGoal() {
+        return false;
+    }
 }

@@ -19,4 +19,14 @@ public class Block extends GameObject implements Tile {
     public void draw(GraphicsContext context) {
         context.drawImage(blockImg, x, y, width, width);
     }
+
+    @Override
+    public boolean isStartLocation() {
+        return false;
+    }
+
+    @Override
+    public boolean isGoal() {
+        return false;
+    }
 }

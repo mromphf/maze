@@ -12,20 +12,21 @@ import java.util.Map;
 
 public class LoadsLevels {
 
-    public static List<Tile> generateTiles(Map<Integer, List<Character>> symbols) {
+    public static List<List<Tile>> generateTiles(Map<Integer, List<Character>> symbols) {
 
-        List<Tile> tiles = new ArrayList<>();
+        List<List<Tile>> tiles = new ArrayList<>();
 
         for (int horizontal = 0; horizontal < symbols.keySet().size(); horizontal++) {
+            tiles.add(new ArrayList<>());
             for (int vertical = 0; vertical < symbols.get(horizontal).size(); vertical++) {
                 if (symbols.get(horizontal).get(vertical) == 'b') {
-                    tiles.add(new Block(vertical * 50, horizontal * 50));
+                    tiles.get(horizontal).add(new Block(vertical * 50, horizontal * 50));
                 } else if (symbols.get(horizontal).get(vertical) == 's') {
-                    tiles.add(new Start(vertical * 50, horizontal * 50));
+                    tiles.get(horizontal).add(new Start(vertical * 50, horizontal * 50));
                 } else if (symbols.get(horizontal).get(vertical) == 'g') {
-                    tiles.add(new Goal(vertical * 50, horizontal * 50));
+                    tiles.get(horizontal).add(new Goal(vertical * 50, horizontal * 50));
                 } else {
-                    tiles.add(new Empty(vertical * 50, horizontal * 50));
+                    tiles.get(horizontal).add(new Empty(vertical * 50, horizontal * 50));
                 }
             }
         }

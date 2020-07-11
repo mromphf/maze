@@ -24,4 +24,14 @@ public class Empty extends GameObject implements Tile {
     public boolean collidesWith(Collidable c) {
         return false;
     }
+
+    @Override
+    public boolean isStartLocation() {
+        return false;
+    }
+
+    @Override
+    public boolean isGoal() {
+        return false;
+    }
 }
