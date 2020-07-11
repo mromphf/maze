@@ -1,10 +1,10 @@
 package game;
 
+import game.abstraction.Movable;
 import game.abstraction.Tile;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class LoadsLevels {
 
@@ -23,5 +23,21 @@ public class LoadsLevels {
         }
 
         return tiles;
+    }
+
+    public static Collection<Movable> generateMovables(Map<Integer, List<Character>> symbols) {
+        List<Optional<Movable>> movables = new ArrayList<>();
+
+        for (int horizontal = 0; horizontal < symbols.keySet().size(); horizontal++) {
+            for (int vertical = 0; vertical < symbols.get(horizontal).size(); vertical++) {
+                Character symbol = symbols.get(horizontal).get(vertical);
+                movables.add(Factory.buildMovable(symbol, vertical, horizontal));
+            }
+        }
+
+        return movables.stream()
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .collect(Collectors.toList());
     }
 }

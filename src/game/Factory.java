@@ -1,12 +1,15 @@
 package game;
 
+import game.abstraction.Movable;
 import game.abstraction.Tile;
-import game.concrete.Block;
-import game.concrete.Empty;
-import game.concrete.Goal;
-import game.concrete.Start;
+import game.concrete.*;
+
+import java.util.Optional;
 
 public class Factory {
+
+    private static final int TILE_OFFSET = 7;
+
     public static Tile buildTile(Character symbol, int vertical, int horizontal) {
         switch (symbol) {
             case 'b':
@@ -18,5 +21,12 @@ public class Factory {
             default:
                 return new Empty(vertical * 50, horizontal * 50);
         }
+    }
+
+    public static Optional<Movable> buildMovable(Character symbol, int x, int y) {
+        if (symbol == 's') {
+            return Optional.of(new Player((x * 50) + TILE_OFFSET, (y * 50) + TILE_OFFSET));
+        }
+        return Optional.empty();
     }
 }
