@@ -18,7 +18,9 @@ public class Factory {
             case 's':
                 return new Start(vertical * TILE_SIZE, horizontal * TILE_SIZE);
             case 'g':
-                return new Goal(vertical * TILE_SIZE, horizontal * TILE_SIZE);
+                return new Goal(vertical * TILE_SIZE, horizontal * TILE_SIZE, false);
+            case 'x':
+                return new Switch(vertical * TILE_SIZE, horizontal * TILE_SIZE);
             default:
                 return new Empty(vertical * TILE_SIZE, horizontal * TILE_SIZE);
         }

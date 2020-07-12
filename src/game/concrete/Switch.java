@@ -7,36 +7,25 @@ import game.abstraction.Tile;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class Goal extends Collider implements Tile {
+public class Switch extends Collider implements Tile {
 
-    private final boolean isOpen;
-    private final Predicate predicate = Predicate.IS_GOAL;
+    private final Predicate predicate = Predicate.IS_SWITCH;
 
-    public Goal(int x, int y, boolean isOpen) {
+    public Switch(int x, int y) {
         super(x, y);
-        this.isOpen = isOpen;
         height = 50;
         width = 50;
-    }
-
-    public boolean isOpen() {
-        return isOpen;
-    }
-
-    public Goal open() {
-        return new Goal(x, y, true);
-    }
-
-    @Override
-    public void draw(GraphicsContext context) {
-        Color c = isOpen? Color.BLUE : Color.RED;
-        context.setFill(c);
-        context.fillRect(x, y, width, height);
     }
 
     @Override
     public boolean collidesWith(Collidable c) {
         return false;
+    }
+
+    @Override
+    public void draw(GraphicsContext context) {
+        context.setFill(Color.LIGHTBLUE);
+        context.fillRect(x, y, width, height);
     }
 
     @Override

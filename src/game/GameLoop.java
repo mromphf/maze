@@ -29,8 +29,9 @@ public class GameLoop extends AnimationTimer {
     private final Collection<Tile> tiles = LoadsLevels.generateTiles(levelFile);
     private final Collection<Actor> actors = LoadsLevels.generateActors(levelFile);
     private final Player player;
-    private final Goal goal;
+    private Goal goal;
     private final Collection<Actor> enemies;
+    private final Collection<Tile> switches;
 
     public GameLoop(Canvas fgCanvas, Canvas bgCanvas) {
         Rectangle2D screen = Screen.getPrimary().getBounds();
@@ -66,6 +67,10 @@ public class GameLoop extends AnimationTimer {
                 .filter(t -> t.matches(Predicate.IS_GOAL))
                 .findFirst()
                 .orElseThrow(IllegalStateException::new);
+
+        switches = tiles.stream()
+                .filter(a -> a.matches(Predicate.IS_SWITCH))
+                .collect(Collectors.toSet());
     }
 
     @Override
@@ -77,11 +82,18 @@ public class GameLoop extends AnimationTimer {
             a.move(tiles);
         });
 
+        goal.draw(background);
+        switches.forEach(s -> s.draw(background));
+
+        if (player.collidesWith(switches)) {
+            goal = goal.open();
+        }
+
         if (player.collidesWith(enemies)) {
             gameOver();
         }
 
-        if (player.collidesWith(goal)) {
+        if (player.collidesWith(goal) && goal.isOpen()) {
             gameOver();
         }
     }
