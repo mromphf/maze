@@ -3,7 +3,7 @@ package game;
 import game.abstraction.Actor;
 import game.abstraction.Tile;
 import game.concrete.Goal;
-import game.concrete.Bouncer;
+import game.concrete.BouncesUpAndDown;
 import game.concrete.Player;
 import io.File;
 import javafx.animation.AnimationTimer;
@@ -59,7 +59,7 @@ public class GameLoop extends AnimationTimer {
                 .orElseThrow(IllegalStateException::new);
 
         enemies = actors.stream()
-                .filter(a -> a instanceof Bouncer)
+                .filter(a -> a instanceof BouncesUpAndDown)
                 .collect(Collectors.toSet());
 
         goal = (Goal) tiles.stream()

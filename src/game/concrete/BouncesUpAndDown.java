@@ -9,11 +9,11 @@ import javafx.scene.shape.ArcType;
 
 import java.util.Collection;
 
-public class Bouncer extends Mover implements Actor {
+public class BouncesUpAndDown extends Mover implements Actor {
 
     private boolean goingUp = true;
 
-    public Bouncer(int x, int y, int velocity) {
+    public BouncesUpAndDown(int x, int y, int velocity) {
         super(x, y, velocity);
         height = 35;
         width = 35;
@@ -27,18 +27,18 @@ public class Bouncer extends Mover implements Actor {
 
     @Override
     public void move(Collection<? extends Collidable> obstacles) {
-        if (goingUp && canMoveHere(obstacles, new Bouncer(x, y - velocity, velocity))) {
+        if (goingUp && canMoveHere(obstacles, new BouncesUpAndDown(x, y - velocity, velocity))) {
             moveUp();
         }
-        else if (!goingUp && !canMoveHere(obstacles, new Bouncer(x, y + velocity, velocity))) {
+        else if (!goingUp && !canMoveHere(obstacles, new BouncesUpAndDown(x, y + velocity, velocity))) {
             goingUp = true;
             moveUp();
         }
-        else if (goingUp && !canMoveHere(obstacles, new Bouncer(x, y - velocity, velocity))) {
+        else if (goingUp && !canMoveHere(obstacles, new BouncesUpAndDown(x, y - velocity, velocity))) {
             goingUp = false;
             moveDown();
         }
-        else if (!goingUp && canMoveHere(obstacles, new Bouncer(x, y + velocity, velocity))) {
+        else if (!goingUp && canMoveHere(obstacles, new BouncesUpAndDown(x, y + velocity, velocity))) {
             moveDown();
         }
     }

@@ -32,7 +32,12 @@ public class Factory {
                         (y * TILE_SIZE) + TILE_OFFSET,
                         5));
             case 'u':
-                return Optional.of(new Bouncer(
+                return Optional.of(new BouncesUpAndDown(
+                        (x * TILE_SIZE) + TILE_OFFSET,
+                        (y * TILE_SIZE) + TILE_OFFSET,
+                        5));
+            case 'l':
+                return Optional.of(new BouncesLeftAndRight(
                         (x * TILE_SIZE) + TILE_OFFSET,
                         (y * TILE_SIZE) + TILE_OFFSET,
                         5));
