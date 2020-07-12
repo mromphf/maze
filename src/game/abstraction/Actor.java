@@ -1,3 +1,3 @@
 package game.abstraction;
 
-public interface Actor extends Drawable, Collidable, Movable {}
+public interface Actor extends Drawable, Collidable, Movable, Examinable {}

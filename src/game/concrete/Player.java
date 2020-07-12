@@ -3,6 +3,7 @@ package game.concrete;
 import game.abstraction.Actor;
 import game.abstraction.Collidable;
 import game.abstraction.Mover;
+import game.abstraction.Predicate;
 import io.Keyboard;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
@@ -12,6 +13,8 @@ import javafx.scene.shape.ArcType;
 import java.util.Collection;
 
 public class Player extends Mover implements Actor {
+
+    private final Predicate predicate = Predicate.IS_PLAYER;
 
     public Player(int x, int y, int velocity) {
         super(x, y, velocity);
@@ -23,6 +26,11 @@ public class Player extends Mover implements Actor {
     public void draw(GraphicsContext context) {
         context.setFill(Color.GREEN);
         context.fillArc(x, y, width, height, 0, 360, ArcType.ROUND);
+    }
+
+    @Override
+    public boolean matches(Predicate p) {
+        return predicate.equals(p);
     }
 
     public void move(Collection<? extends Collidable> obstacles) {

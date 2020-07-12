@@ -4,7 +4,6 @@ import game.abstraction.Actor;
 import game.abstraction.Predicate;
 import game.abstraction.Tile;
 import game.concrete.Goal;
-import game.concrete.BouncesUpAndDown;
 import game.concrete.Player;
 import io.File;
 import javafx.animation.AnimationTimer;
@@ -55,12 +54,12 @@ public class GameLoop extends AnimationTimer {
         tiles.forEach(d -> d.draw(background));
 
         player = (Player) actors.stream()
-                .filter(m -> m instanceof Player)
+                .filter(m -> m.matches(Predicate.IS_PLAYER))
                 .findFirst()
                 .orElseThrow(IllegalStateException::new);
 
         enemies = actors.stream()
-                .filter(a -> a instanceof BouncesUpAndDown)
+                .filter(a -> a.matches(Predicate.IS_ENEMY))
                 .collect(Collectors.toSet());
 
         goal = (Goal) tiles.stream()
