@@ -32,14 +32,4 @@ public class Switch extends Collider implements Tile {
     public boolean matches(Predicate p) {
         return predicate.equals(p);
     }
-
-    @Override
-    public boolean isStartLocation() {
-        return false;
-    }
-
-    @Override
-    public boolean isGoal() {
-        return false;
-    }
 }

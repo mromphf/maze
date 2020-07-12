@@ -27,16 +27,6 @@ public class Start extends Collider implements Tile {
     }
 
     @Override
-    public boolean isStartLocation() {
-        return true;
-    }
-
-    @Override
-    public boolean isGoal() {
-        return false;
-    }
-
-    @Override
     public boolean matches(Predicate p) {
         return false;
     }
