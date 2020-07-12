@@ -9,11 +9,24 @@ import javafx.scene.paint.Color;
 public class Switch extends Collider implements GameObject {
 
     private final Predicate predicate = Predicate.IS_SWITCH;
+    private boolean flipped;
 
     public Switch(int x, int y) {
         super(x, y);
+        this.flipped = false;
         height = 50;
         width = 50;
+    }
+
+    public boolean isFlipped() {
+        return flipped;
+    }
+
+    @Override
+    public void onCollide(GameObject target) {
+        if (target.matches(Predicate.IS_PLAYER)) {
+            this.flipped = true;
+        }
     }
 
     @Override
@@ -23,7 +36,8 @@ public class Switch extends Collider implements GameObject {
 
     @Override
     public void draw(GraphicsContext context) {
-        context.setFill(Color.LIGHTBLUE);
+        Color c = flipped ? Color.LIGHTGREY : Color.LIGHTBLUE;
+        context.setFill(c);
         context.fillRect(x, y, width, height);
     }
 

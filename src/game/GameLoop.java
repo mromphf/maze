@@ -5,11 +5,13 @@ import game.abstraction.MovableGameObject;
 import game.abstraction.Predicate;
 import game.concrete.Goal;
 import game.concrete.Player;
+import game.concrete.Switch;
 import io.File;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 
 import java.util.Collection;
@@ -25,13 +27,13 @@ public class GameLoop extends AnimationTimer {
     private final GraphicsContext background;
     private final double screenWidth;
     private final double screenHeight;
-    private final Map<Integer, List<Character>> levelFile = File.loadLevel("data/level2.csv");
+    private final Map<Integer, List<Character>> levelFile = File.loadLevel("data/level4.csv");
     private final Collection<GameObject> tiles = LoadsLevels.generateTiles(levelFile);
     private final Collection<MovableGameObject> actors = LoadsLevels.generateActors(levelFile);
     private final Player player;
-    private Goal goal;
     private final Collection<MovableGameObject> enemies;
-    private final Collection<GameObject> switches;
+    private final Collection<Switch> switches;
+    private Goal goal;
 
     public GameLoop(Canvas fgCanvas, Canvas bgCanvas) {
         Rectangle2D screen = Screen.getPrimary().getBounds();
@@ -70,6 +72,7 @@ public class GameLoop extends AnimationTimer {
 
         switches = tiles.stream()
                 .filter(a -> a.matches(Predicate.IS_SWITCH))
+                .map(a -> new Switch(a.getX(), a.getY()))
                 .collect(Collectors.toSet());
     }
 
@@ -83,22 +86,31 @@ public class GameLoop extends AnimationTimer {
         });
 
         goal.draw(background);
-        switches.forEach(s -> s.draw(background));
 
-        if (player.collidesWith(switches)) {
+        switches.forEach(s -> {
+            s.draw(background);
+
+            if (player.collidesWith(s)) {
+                s.onCollide(player);
+            }
+        });
+
+        if (switches.stream().filter(Switch::isFlipped).count() == switches.size()) {
             goal = goal.open();
         }
 
-        if (player.collidesWith(enemies)) {
-            gameOver();
-        }
+        enemies.forEach(e -> {
+            if (player.collidesWith(e)) {
+                gameOver();
+            }
+        });
 
         if (player.collidesWith(goal) && goal.isOpen()) {
             gameOver();
         }
     }
 
-    private void gameOver() {
+    public void gameOver() {
         exit();
     }
 }

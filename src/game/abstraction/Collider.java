@@ -13,6 +13,8 @@ public abstract class Collider {
           this.y = y;
      }
 
+     public void onCollide(GameObject target) {}
+
      public boolean collidesWith(GameObject target) {
           return (this.x < target.getX() + target.getWidth() &&
                   this.x + this.getWidth() > target.getX() &&
