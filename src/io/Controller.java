@@ -52,11 +52,11 @@ public class Controller implements Initializable {
 
     private List<Map <Integer, List<Character>>> loadLevelData() {
         return new ArrayList<Map <Integer, List<Character>>>() {{
-            add(File.loadLevel("data/level1.csv"));
-            add(File.loadLevel("data/level2.csv"));
-            add(File.loadLevel("data/level3.csv"));
-            add(File.loadLevel("data/level4.csv"));
-            add(File.loadLevel("data/level5.csv"));
+            add(Storage.loadLevel("data/level1.csv"));
+            add(Storage.loadLevel("data/level2.csv"));
+            add(Storage.loadLevel("data/level3.csv"));
+            add(Storage.loadLevel("data/level4.csv"));
+            add(Storage.loadLevel("data/level5.csv"));
         }};
     }
 }

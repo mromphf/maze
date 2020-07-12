@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class File {
+public class Storage {
     public static Map<Integer, List<Character>> loadLevel(String filename) {
         Map<Integer, List<Character>> chars = new HashMap<>();
         int x = 0;
