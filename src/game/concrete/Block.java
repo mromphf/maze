@@ -1,11 +1,11 @@
 package game.concrete;
 
-import game.abstraction.GameObject;
+import game.abstraction.Collider;
 import game.abstraction.Tile;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class Block extends GameObject implements Tile {
+public class Block extends Collider implements Tile {
 
     private final Image blockImg = new Image(getClass().getResourceAsStream("../../brown-block.png"));
 

@@ -2,7 +2,7 @@ package game.abstraction;
 
 import java.util.Collection;
 
-public abstract class Mover extends GameObject {
+public abstract class Mover extends Collider {
 
     protected final int velocity;
 

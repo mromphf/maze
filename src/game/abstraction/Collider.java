@@ -1,12 +1,12 @@
 package game.abstraction;
 
-public abstract class GameObject {
+public abstract class Collider {
      protected int x;
      protected int y;
      protected int height;
      protected int width;
 
-     public GameObject(int x, int y) {
+     public Collider(int x, int y) {
           this.x = x;
           this.y = y;
      }

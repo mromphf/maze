@@ -1,12 +1,12 @@
 package game.concrete;
 
 import game.abstraction.Collidable;
-import game.abstraction.GameObject;
+import game.abstraction.Collider;
 import game.abstraction.Tile;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class Goal extends GameObject implements Tile {
+public class Goal extends Collider implements Tile {
 
     public Goal(int x, int y) {
         super(x, y);
