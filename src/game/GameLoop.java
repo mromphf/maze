@@ -27,18 +27,19 @@ public class GameLoop extends AnimationTimer {
     private final GraphicsContext background;
     private final double screenWidth;
     private final double screenHeight;
-    private final Map<Integer, List<Character>> levelFile = File.loadLevel("data/level4.csv");
-    private final Collection<GameObject> tiles = LoadsLevels.generateTiles(levelFile);
-    private final Collection<MovableGameObject> actors = LoadsLevels.generateActors(levelFile);
+    private final Collection<GameObject> tiles;
+    private final Collection<MovableGameObject> actors;
     private final Player player;
     private final Collection<MovableGameObject> enemies;
     private final Collection<Switch> switches;
     private Goal goal;
 
-    public GameLoop(Canvas fgCanvas, Canvas bgCanvas) {
+    public GameLoop(Canvas fgCanvas, Canvas bgCanvas, Map<Integer, List<Character>> levelFile) {
         Rectangle2D screen = Screen.getPrimary().getBounds();
         this.screenHeight = screen.getHeight();
         this.screenWidth = screen.getWidth();
+        tiles = LoadsLevels.generateTiles(levelFile);
+        actors = LoadsLevels.generateActors(levelFile);
 
         fgCanvas.setHeight(screenHeight);
         fgCanvas.setWidth(screenWidth - (screenWidth * 0.2));

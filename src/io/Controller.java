@@ -7,6 +7,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
 
 import java.net.URL;
+import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -18,7 +20,8 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        new GameLoop(foreground, background).start();
+        Map<Integer, List<Character>> levelData = File.loadLevel("data/level4.csv");
+        new GameLoop(foreground, background, levelData).start();
     }
 
     @FXML
