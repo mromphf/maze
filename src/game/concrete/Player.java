@@ -1,7 +1,7 @@
 package game.concrete;
 
-import game.abstraction.Actor;
-import game.abstraction.Collidable;
+import game.abstraction.GameObject;
+import game.abstraction.MovableGameObject;
 import game.abstraction.Mover;
 import game.abstraction.Predicate;
 import io.Keyboard;
@@ -12,7 +12,7 @@ import javafx.scene.shape.ArcType;
 
 import java.util.Collection;
 
-public class Player extends Mover implements Actor {
+public class Player extends Mover implements MovableGameObject {
 
     private final Predicate predicate = Predicate.IS_PLAYER;
 
@@ -33,7 +33,7 @@ public class Player extends Mover implements Actor {
         return predicate.equals(p);
     }
 
-    public void move(Collection<? extends Collidable> obstacles) {
+    public void move(Collection<? extends GameObject> obstacles) {
         if (Keyboard.isPressed(KeyCode.LEFT) && canMoveHere(obstacles, new Player(x - velocity, y, velocity))) {
             moveLeft();
         }

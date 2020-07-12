@@ -1,13 +1,12 @@
 package game.concrete;
 
-import game.abstraction.Collidable;
+import game.abstraction.GameObject;
 import game.abstraction.Collider;
 import game.abstraction.Predicate;
-import game.abstraction.Tile;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class Start extends Collider implements Tile {
+public class Start extends Collider implements GameObject {
 
     public Start(int x, int y) {
         super(x, y);
@@ -22,7 +21,7 @@ public class Start extends Collider implements Tile {
     }
 
     @Override
-    public boolean collidesWith(Collidable target) {
+    public boolean collidesWith(GameObject target) {
         return false;
     }
 

@@ -11,7 +11,7 @@ public abstract class Mover extends Collider {
         this.velocity = velocity;
     }
 
-    protected boolean canMoveHere(Collection<? extends Collidable> obstacles, Collidable tryingToMoveHere) {
+    protected boolean canMoveHere(Collection<? extends GameObject> obstacles, GameObject tryingToMoveHere) {
         return obstacles.stream().noneMatch(o -> o.collidesWith(tryingToMoveHere));
     }
 

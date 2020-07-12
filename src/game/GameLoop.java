@@ -1,8 +1,8 @@
 package game;
 
-import game.abstraction.Actor;
+import game.abstraction.GameObject;
+import game.abstraction.MovableGameObject;
 import game.abstraction.Predicate;
-import game.abstraction.Tile;
 import game.concrete.Goal;
 import game.concrete.Player;
 import io.File;
@@ -26,12 +26,12 @@ public class GameLoop extends AnimationTimer {
     private final double screenWidth;
     private final double screenHeight;
     private final Map<Integer, List<Character>> levelFile = File.loadLevel("data/level2.csv");
-    private final Collection<Tile> tiles = LoadsLevels.generateTiles(levelFile);
-    private final Collection<Actor> actors = LoadsLevels.generateActors(levelFile);
+    private final Collection<GameObject> tiles = LoadsLevels.generateTiles(levelFile);
+    private final Collection<MovableGameObject> actors = LoadsLevels.generateActors(levelFile);
     private final Player player;
     private Goal goal;
-    private final Collection<Actor> enemies;
-    private final Collection<Tile> switches;
+    private final Collection<MovableGameObject> enemies;
+    private final Collection<GameObject> switches;
 
     public GameLoop(Canvas fgCanvas, Canvas bgCanvas) {
         Rectangle2D screen = Screen.getPrimary().getBounds();

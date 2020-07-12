@@ -13,14 +13,14 @@ public abstract class Collider {
           this.y = y;
      }
 
-     public boolean collidesWith(Collidable target) {
+     public boolean collidesWith(GameObject target) {
           return (this.x < target.getX() + target.getWidth() &&
                   this.x + this.getWidth() > target.getX() &&
                   this.y < target.getY() + target.getHeight() &&
                   this.y + this.getHeight() > target.getY());
      }
 
-     public boolean collidesWith(Collection<? extends Collidable> targets) {
+     public boolean collidesWith(Collection<? extends GameObject> targets) {
           return targets.stream().anyMatch(this::collidesWith);
      }
 

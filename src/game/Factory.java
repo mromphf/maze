@@ -1,7 +1,7 @@
 package game;
 
-import game.abstraction.Actor;
-import game.abstraction.Tile;
+import game.abstraction.GameObject;
+import game.abstraction.MovableGameObject;
 import game.concrete.*;
 
 import java.util.Optional;
@@ -11,7 +11,7 @@ public class Factory {
     private static final int TILE_SIZE = 50;
     private static final int TILE_OFFSET = 7;
 
-    public static Tile buildTile(Character symbol, int vertical, int horizontal) {
+    public static GameObject buildTile(Character symbol, int vertical, int horizontal) {
         switch (symbol) {
             case 'b':
                 return new Block(vertical * TILE_SIZE, horizontal * TILE_SIZE);
@@ -26,7 +26,7 @@ public class Factory {
         }
     }
 
-    public static Optional<Actor> buildActor(Character symbol, int x, int y) {
+    public static Optional<MovableGameObject> buildActor(Character symbol, int x, int y) {
         switch (symbol) {
             case 's':
                 return Optional.of(new Player(

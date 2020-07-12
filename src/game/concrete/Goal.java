@@ -1,13 +1,12 @@
 package game.concrete;
 
-import game.abstraction.Collidable;
+import game.abstraction.GameObject;
 import game.abstraction.Collider;
 import game.abstraction.Predicate;
-import game.abstraction.Tile;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class Goal extends Collider implements Tile {
+public class Goal extends Collider implements GameObject {
 
     private final boolean isOpen;
     private final Predicate predicate = Predicate.IS_GOAL;
@@ -35,7 +34,7 @@ public class Goal extends Collider implements Tile {
     }
 
     @Override
-    public boolean collidesWith(Collidable c) {
+    public boolean collidesWith(GameObject c) {
         return false;
     }
 

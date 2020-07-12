@@ -1,7 +1,7 @@
 package game.concrete;
 
-import game.abstraction.Actor;
-import game.abstraction.Collidable;
+import game.abstraction.GameObject;
+import game.abstraction.MovableGameObject;
 import game.abstraction.Mover;
 import game.abstraction.Predicate;
 import javafx.scene.canvas.GraphicsContext;
@@ -10,7 +10,7 @@ import javafx.scene.shape.ArcType;
 
 import java.util.Collection;
 
-public class BouncesLeftAndRight extends Mover implements Actor {
+public class BouncesLeftAndRight extends Mover implements MovableGameObject {
 
     private final Predicate predicate = Predicate.IS_ENEMY;
     private boolean goingLeft = true;
@@ -33,7 +33,7 @@ public class BouncesLeftAndRight extends Mover implements Actor {
     }
 
     @Override
-    public void move(Collection<? extends Collidable> obstacles) {
+    public void move(Collection<? extends GameObject> obstacles) {
         if (goingLeft && canMoveHere(obstacles, new BouncesLeftAndRight(x - velocity, y, velocity))) {
             moveLeft();
         }
