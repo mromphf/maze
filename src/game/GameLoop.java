@@ -3,6 +3,7 @@ package game;
 import game.abstraction.Actor;
 import game.abstraction.Tile;
 import game.concrete.Goal;
+import game.concrete.Bouncer;
 import game.concrete.Player;
 import io.File;
 import javafx.animation.AnimationTimer;
@@ -14,6 +15,7 @@ import javafx.stage.Screen;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static javafx.application.Platform.exit;
 
@@ -28,6 +30,7 @@ public class GameLoop extends AnimationTimer {
     private final Collection<Actor> actors = LoadsLevels.generateActors(levelFile);
     private final Player player;
     private final Goal goal;
+    private final Collection<Actor> enemies;
 
     public GameLoop(Canvas fgCanvas, Canvas bgCanvas) {
         Rectangle2D screen = Screen.getPrimary().getBounds();
@@ -55,6 +58,10 @@ public class GameLoop extends AnimationTimer {
                 .findFirst()
                 .orElseThrow(IllegalStateException::new);
 
+        enemies = actors.stream()
+                .filter(a -> a instanceof Bouncer)
+                .collect(Collectors.toSet());
+
         goal = (Goal) tiles.stream()
                 .filter(Tile::isGoal)
                 .findFirst()
@@ -69,6 +76,10 @@ public class GameLoop extends AnimationTimer {
             a.draw(foreground);
             a.move(tiles);
         });
+
+        if (player.collidesWith(enemies)) {
+            gameOver();
+        }
 
         if (player.collidesWith(goal)) {
             gameOver();

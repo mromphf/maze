@@ -1,5 +1,7 @@
 package game.abstraction;
 
+import java.util.Collection;
+
 public abstract class Collider {
      protected int x;
      protected int y;
@@ -16,6 +18,10 @@ public abstract class Collider {
                   this.x + this.getWidth() > target.getX() &&
                   this.y < target.getY() + target.getHeight() &&
                   this.y + this.getHeight() > target.getY());
+     }
+
+     public boolean collidesWith(Collection<? extends Collidable> targets) {
+          return targets.stream().anyMatch(this::collidesWith);
      }
 
      public int getX() {

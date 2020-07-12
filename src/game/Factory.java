@@ -25,12 +25,19 @@ public class Factory {
     }
 
     public static Optional<Actor> buildActor(Character symbol, int x, int y) {
-        if (symbol == 's') {
-            return Optional.of(new Player(
-                    (x * TILE_SIZE) + TILE_OFFSET,
-                    (y * TILE_SIZE) + TILE_OFFSET,
-                    5));
+        switch (symbol) {
+            case 's':
+                return Optional.of(new Player(
+                        (x * TILE_SIZE) + TILE_OFFSET,
+                        (y * TILE_SIZE) + TILE_OFFSET,
+                        5));
+            case 'u':
+                return Optional.of(new Bouncer(
+                        (x * TILE_SIZE) + TILE_OFFSET,
+                        (y * TILE_SIZE) + TILE_OFFSET,
+                        5));
+            default:
+                return Optional.empty();
         }
-        return Optional.empty();
     }
 }
