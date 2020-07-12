@@ -20,7 +20,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Map<Integer, List<Character>> levelData = File.loadLevel("data/level4.csv");
+        Map<Integer, List<Character>> levelData = File.loadLevel("data/level1.csv");
         new GameLoop(foreground, background, levelData).start();
     }
 
