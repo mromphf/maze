@@ -2,11 +2,14 @@ package game.concrete;
 
 import game.abstraction.Collidable;
 import game.abstraction.Collider;
+import game.abstraction.Predicate;
 import game.abstraction.Tile;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class Goal extends Collider implements Tile {
+
+    private final Predicate predicate = Predicate.IS_GOAL;
 
     public Goal(int x, int y) {
         super(x, y);
@@ -33,5 +36,10 @@ public class Goal extends Collider implements Tile {
     @Override
     public boolean isGoal() {
         return true;
+    }
+
+    @Override
+    public boolean matches(Predicate p) {
+        return predicate.equals(p);
     }
 }

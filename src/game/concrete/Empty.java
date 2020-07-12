@@ -2,6 +2,7 @@ package game.concrete;
 
 import game.abstraction.Collidable;
 import game.abstraction.Collider;
+import game.abstraction.Predicate;
 import game.abstraction.Tile;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -32,6 +33,11 @@ public class Empty extends Collider implements Tile {
 
     @Override
     public boolean isGoal() {
+        return false;
+    }
+
+    @Override
+    public boolean matches(Predicate p) {
         return false;
     }
 }

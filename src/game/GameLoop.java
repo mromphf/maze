@@ -1,6 +1,7 @@
 package game;
 
 import game.abstraction.Actor;
+import game.abstraction.Predicate;
 import game.abstraction.Tile;
 import game.concrete.Goal;
 import game.concrete.BouncesUpAndDown;
@@ -25,7 +26,7 @@ public class GameLoop extends AnimationTimer {
     private final GraphicsContext background;
     private final double screenWidth;
     private final double screenHeight;
-    private final Map<Integer, List<Character>> levelFile = File.loadLevel("data/level1.csv");
+    private final Map<Integer, List<Character>> levelFile = File.loadLevel("data/level2.csv");
     private final Collection<Tile> tiles = LoadsLevels.generateTiles(levelFile);
     private final Collection<Actor> actors = LoadsLevels.generateActors(levelFile);
     private final Player player;
@@ -63,7 +64,7 @@ public class GameLoop extends AnimationTimer {
                 .collect(Collectors.toSet());
 
         goal = (Goal) tiles.stream()
-                .filter(Tile::isGoal)
+                .filter(t -> t.matches(Predicate.IS_GOAL))
                 .findFirst()
                 .orElseThrow(IllegalStateException::new);
     }
