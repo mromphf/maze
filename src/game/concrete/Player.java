@@ -2,7 +2,7 @@ package game.concrete;
 
 import game.abstraction.Actor;
 import game.abstraction.Collidable;
-import game.abstraction.GameObject;
+import game.abstraction.Mover;
 import io.Keyboard;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
@@ -11,14 +11,12 @@ import javafx.scene.shape.ArcType;
 
 import java.util.Collection;
 
-public class Player extends GameObject implements Actor {
+public class Player extends Mover implements Actor {
 
-    private final int velocity = 5;
-
-    public Player(int x, int y) {
-        super(x, y);
-        this.width = 35;
-        this.height = 35;
+    public Player(int x, int y, int velocity) {
+        super(x, y, velocity);
+        height = 35;
+        width = 35;
     }
 
     @Override
@@ -28,37 +26,17 @@ public class Player extends GameObject implements Actor {
     }
 
     public void move(Collection<? extends Collidable> obstacles) {
-        if (Keyboard.isPressed(KeyCode.LEFT) && canMoveHere(obstacles, new Player(x - velocity, y))) {
+        if (Keyboard.isPressed(KeyCode.LEFT) && canMoveHere(obstacles, new Player(x - velocity, y, velocity))) {
             moveLeft();
         }
-        else if (Keyboard.isPressed(KeyCode.RIGHT) && canMoveHere(obstacles, new Player(x + velocity, y))) {
+        else if (Keyboard.isPressed(KeyCode.RIGHT) && canMoveHere(obstacles, new Player(x + velocity, y, velocity))) {
             moveRight();
         }
-        else if (Keyboard.isPressed(KeyCode.UP) && canMoveHere(obstacles, new Player(x, y - velocity))) {
+        else if (Keyboard.isPressed(KeyCode.UP) && canMoveHere(obstacles, new Player(x, y - velocity, velocity))) {
             moveUp();
         }
-        else if (Keyboard.isPressed(KeyCode.DOWN) && canMoveHere(obstacles, new Player(x, y + velocity))) {
+        else if (Keyboard.isPressed(KeyCode.DOWN) && canMoveHere(obstacles, new Player(x, y + velocity, velocity))) {
             moveDown();
         }
-    }
-
-    private boolean canMoveHere(Collection<? extends Collidable> obstacles, Collidable tryingToMoveHere) {
-        return obstacles.stream().noneMatch(o -> o.collidesWith(tryingToMoveHere));
-    }
-
-    private void moveLeft() {
-        this.x -= this.velocity;
-    }
-
-    private void moveRight() {
-        this.x += this.velocity;
-    }
-
-    private void moveUp() {
-        this.y -= this.velocity;
-    }
-
-    private void moveDown() {
-        this.y += this.velocity;
     }
 }

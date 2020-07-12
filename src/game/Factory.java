@@ -25,7 +25,10 @@ public class Factory {
 
     public static Optional<Actor> buildActor(Character symbol, int x, int y) {
         if (symbol == 's') {
-            return Optional.of(new Player((x * 50) + TILE_OFFSET, (y * 50) + TILE_OFFSET));
+            return Optional.of(new Player(
+                    (x * 50) + TILE_OFFSET,
+                    (y * 50) + TILE_OFFSET,
+                    5));
         }
         return Optional.empty();
     }
