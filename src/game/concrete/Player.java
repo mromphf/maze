@@ -1,8 +1,8 @@
 package game.concrete;
 
+import game.abstraction.Actor;
 import game.abstraction.Collidable;
 import game.abstraction.GameObject;
-import game.abstraction.Movable;
 import io.Keyboard;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
@@ -11,7 +11,7 @@ import javafx.scene.shape.ArcType;
 
 import java.util.Collection;
 
-public class Player extends GameObject implements Movable {
+public class Player extends GameObject implements Actor {
 
     private final int velocity = 5;
 

@@ -1,6 +1,6 @@
 package game;
 
-import game.abstraction.Movable;
+import game.abstraction.Actor;
 import game.abstraction.Tile;
 import game.concrete.*;
 
@@ -23,7 +23,7 @@ public class Factory {
         }
     }
 
-    public static Optional<Movable> buildMovable(Character symbol, int x, int y) {
+    public static Optional<Actor> buildActor(Character symbol, int x, int y) {
         if (symbol == 's') {
             return Optional.of(new Player((x * 50) + TILE_OFFSET, (y * 50) + TILE_OFFSET));
         }

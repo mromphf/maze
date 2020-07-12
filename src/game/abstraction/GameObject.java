@@ -1,6 +1,6 @@
 package game.abstraction;
 
-public abstract class GameObject implements Drawable, Collidable {
+public abstract class GameObject {
      protected int x;
      protected int y;
      protected int height;

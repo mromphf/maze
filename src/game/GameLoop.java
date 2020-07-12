@@ -1,6 +1,6 @@
 package game;
 
-import game.abstraction.Movable;
+import game.abstraction.Actor;
 import game.abstraction.Tile;
 import game.concrete.Goal;
 import game.concrete.Player;
@@ -25,6 +25,7 @@ public class GameLoop extends AnimationTimer {
     private final double screenHeight;
     private final Map<Integer, List<Character>> levelFile = File.loadLevel("src/level1.csv");
     private final Collection<Tile> tiles = LoadsLevels.generateTiles(levelFile);
+    private final Collection<Actor> actors = LoadsLevels.generateActors(levelFile);
     private final Player player;
     private final Goal goal;
 
@@ -49,9 +50,7 @@ public class GameLoop extends AnimationTimer {
 
         tiles.forEach(d -> d.draw(background));
 
-        Collection<? extends Movable> movables = LoadsLevels.generateMovables(levelFile);
-
-        player = (Player) movables.stream()
+        player = (Player) actors.stream()
                 .filter(m -> m instanceof Player)
                 .findFirst()
                 .orElseThrow(IllegalStateException::new);
@@ -65,8 +64,11 @@ public class GameLoop extends AnimationTimer {
     @Override
     public void handle(long now) {
         foreground.clearRect(0, 0, screenWidth, screenHeight);
-        player.draw(foreground);
-        player.move(tiles);
+
+        actors.forEach(a -> {
+            a.draw(foreground);
+            a.move(tiles);
+        });
 
         if (player.collidesWith(goal)) {
             gameOver();
