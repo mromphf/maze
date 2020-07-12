@@ -7,7 +7,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -22,7 +21,7 @@ public class Controller implements Initializable {
     @FXML
     private Canvas background;
 
-    private final List<Map<Integer, List<Character>>> levelData = loadLevelData();
+    private final List<Map<Integer, List<Character>>> levelData = Storage.loadLevels("data");
 
     private int levelIndex = 0;
 
@@ -48,15 +47,5 @@ public class Controller implements Initializable {
     @FXML
     public void handleKeyReleased(KeyEvent keyEvent) {
         Keyboard.release(keyEvent.getCode());
-    }
-
-    private List<Map <Integer, List<Character>>> loadLevelData() {
-        return new ArrayList<Map <Integer, List<Character>>>() {{
-            add(Storage.loadLevel("data/level1.csv"));
-            add(Storage.loadLevel("data/level2.csv"));
-            add(Storage.loadLevel("data/level3.csv"));
-            add(Storage.loadLevel("data/level4.csv"));
-            add(Storage.loadLevel("data/level5.csv"));
-        }};
     }
 }
