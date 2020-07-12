@@ -6,12 +6,12 @@ import game.abstraction.Predicate;
 import game.concrete.Goal;
 import game.concrete.Player;
 import game.concrete.Switch;
-import io.File;
+import io.Controller;
+
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 
 import java.util.Collection;
@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static javafx.application.Platform.exit;
 
 public class GameLoop extends AnimationTimer {
 
@@ -32,28 +31,27 @@ public class GameLoop extends AnimationTimer {
     private final Player player;
     private final Collection<MovableGameObject> enemies;
     private final Collection<Switch> switches;
+    private final Controller parent;
     private Goal goal;
 
-    public GameLoop(Canvas fgCanvas, Canvas bgCanvas, Map<Integer, List<Character>> levelFile) {
+    public GameLoop(Controller parent, Canvas fgCanvas, Canvas bgCanvas, Map<Integer, List<Character>> levelFile) {
         Rectangle2D screen = Screen.getPrimary().getBounds();
         this.screenHeight = screen.getHeight();
         this.screenWidth = screen.getWidth();
-        tiles = LoadsLevels.generateTiles(levelFile);
-        actors = LoadsLevels.generateActors(levelFile);
+        this.parent = parent;
+        this.tiles = LoadsLevels.generateTiles(levelFile);
+        this.actors = LoadsLevels.generateActors(levelFile);
 
         fgCanvas.setHeight(screenHeight);
-        fgCanvas.setWidth(screenWidth - (screenWidth * 0.2));
+        fgCanvas.setWidth(screenWidth);
         bgCanvas.setHeight(screenHeight);
-        bgCanvas.setWidth(screenWidth - (screenWidth * 0.2));
+        bgCanvas.setWidth(screenWidth);
 
         fgCanvas.toFront();
         bgCanvas.toBack();
 
         foreground = fgCanvas.getGraphicsContext2D();
         background = bgCanvas.getGraphicsContext2D();
-
-        foreground.translate(225, 35);
-        background.translate(225, 35);
 
         tiles.forEach(d -> d.draw(background));
 
@@ -112,6 +110,9 @@ public class GameLoop extends AnimationTimer {
     }
 
     public void gameOver() {
-        exit();
+        foreground.clearRect(0, 0, screenWidth, screenHeight);
+        background.clearRect(0, 0, screenWidth, screenHeight);
+        stop();
+        parent.loadNextLevel();
     }
 }

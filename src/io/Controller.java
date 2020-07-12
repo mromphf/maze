@@ -7,21 +7,37 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import static javafx.application.Platform.exit;
+
 public class Controller implements Initializable {
+
     @FXML
     private Canvas foreground;
 
     @FXML
     private Canvas background;
 
+    private final List<Map<Integer, List<Character>>> levelData = loadLevelData();
+
+    private int levelIndex = 0;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Map<Integer, List<Character>> levelData = File.loadLevel("data/level1.csv");
-        new GameLoop(foreground, background, levelData).start();
+        loadNextLevel();
+    }
+
+    public void loadNextLevel() {
+        if (levelIndex + 1 > levelData.size()) {
+            exit();
+        }
+        GameLoop gameLoop = new GameLoop(this,foreground, background, levelData.get(levelIndex));
+        gameLoop.start();
+        levelIndex++;
     }
 
     @FXML
@@ -34,4 +50,13 @@ public class Controller implements Initializable {
         Keyboard.release(keyEvent.getCode());
     }
 
+    private List<Map <Integer, List<Character>>> loadLevelData() {
+        return new ArrayList<Map <Integer, List<Character>>>() {{
+            add(File.loadLevel("data/level1.csv"));
+            add(File.loadLevel("data/level2.csv"));
+            add(File.loadLevel("data/level3.csv"));
+            add(File.loadLevel("data/level4.csv"));
+            add(File.loadLevel("data/level5.csv"));
+        }};
+    }
 }
