@@ -34,7 +34,8 @@ public class Controller implements Initializable {
         if (levelIndex + 1 > levelData.size()) {
             exit();
         }
-        GameLoop gameLoop = new GameLoop(this,foreground, background, levelData.get(levelIndex));
+        Screen screen = new Screen(foreground, background);
+        GameLoop gameLoop = new GameLoop(this, screen, levelData.get(levelIndex));
         gameLoop.start();
         levelIndex++;
     }
