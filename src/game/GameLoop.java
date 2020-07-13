@@ -12,7 +12,10 @@ import io.Screen;
 
 import javafx.animation.AnimationTimer;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -63,9 +66,7 @@ public class GameLoop extends AnimationTimer {
         screen.drawOnBackground(Stream.concat(switches.stream(), goals.stream()).collect(Collectors.toSet()));
         screen.drawOnForeground(actors);
 
-        actors.forEach(a -> {
-            a.move(tiles);
-        });
+        actors.forEach(a -> a.move(tiles));
 
         switches.forEach(s -> {
             if (player.collidesWith(s)) {
