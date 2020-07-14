@@ -18,10 +18,6 @@ public class Switch extends Collider implements GameObject {
         width = 50;
     }
 
-    public boolean isFlipped() {
-        return flipped;
-    }
-
     @Override
     public void onCollide(GameObject target) {
         if (target.matches(Predicate.IS_PLAYER)) {
@@ -43,6 +39,9 @@ public class Switch extends Collider implements GameObject {
 
     @Override
     public boolean matches(Predicate p) {
+        if (p.equals(Predicate.SWITCH_FLIPPED)) {
+            return flipped;
+        }
         return predicate.equals(p);
     }
 }

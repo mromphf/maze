@@ -6,10 +6,12 @@ import game.abstraction.Predicate;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+import java.util.Collection;
+
 public class Goal extends Collider implements GameObject {
 
-    private final boolean isOpen;
     private final Predicate predicate = Predicate.IS_GOAL;
+    private boolean isOpen;
 
     public Goal(int x, int y, boolean isOpen) {
         super(x, y);
@@ -22,10 +24,6 @@ public class Goal extends Collider implements GameObject {
         return isOpen;
     }
 
-    public Goal open() {
-        return new Goal(x, y, true);
-    }
-
     @Override
     public void draw(GraphicsContext context) {
         Color c = isOpen? Color.BLUE : Color.RED;
@@ -34,8 +32,20 @@ public class Goal extends Collider implements GameObject {
     }
 
     @Override
+    public void examine(Collection<GameObject> c) {
+        int all_switches = (int) c.stream().filter(o -> o.matches(Predicate.IS_SWITCH)).count();
+        int switches_flipped = (int) c.stream().filter(o -> o.matches(Predicate.SWITCH_FLIPPED)).count();
+        if (all_switches == switches_flipped) {
+            this.isOpen = true;
+        }
+    }
+
+    @Override
     public boolean collidesWith(GameObject c) {
-        return false;
+        if (isOpen) {
+            return false;
+        }
+        return super.collidesWith(c);
     }
 
     @Override
