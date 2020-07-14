@@ -3,7 +3,6 @@ package game;
 import game.abstraction.GameObject;
 import game.abstraction.MovableGameObject;
 import game.abstraction.Predicate;
-import game.concrete.Goal;
 import game.concrete.Player;
 
 import io.Controller;
@@ -26,7 +25,6 @@ public class GameLoop extends AnimationTimer {
     private final Collection<MovableGameObject> actors;
     private final Player player;
     private final Controller parent;
-    private final Goal goal;
 
     public GameLoop(Controller parent, Screen screen, Map<Integer, List<Character>> levelFile) {
         this.screen = screen;
@@ -39,11 +37,6 @@ public class GameLoop extends AnimationTimer {
 
         player = (Player) actors.stream()
                 .filter(m -> m.matches(Predicate.IS_PLAYER))
-                .findFirst()
-                .orElseThrow(IllegalStateException::new);
-
-        goal = (Goal) dynamicTiles.stream()
-                .filter(t -> t.matches(Predicate.IS_GOAL))
                 .findFirst()
                 .orElseThrow(IllegalStateException::new);
     }
@@ -75,7 +68,7 @@ public class GameLoop extends AnimationTimer {
             }
         });
 
-        if (player.collidesWith(goal) && goal.isOpen()) {
+        if (dynamicTiles.stream().anyMatch(t -> t.matches(Predicate.GAME_OVER))) {
             gameOver();
         }
     }

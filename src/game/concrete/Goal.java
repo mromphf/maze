@@ -11,17 +11,22 @@ import java.util.Collection;
 public class Goal extends Collider implements GameObject {
 
     private final Predicate predicate = Predicate.IS_GOAL;
+    private boolean gameOver;
     private boolean isOpen;
 
     public Goal(int x, int y, boolean isOpen) {
         super(x, y);
         this.isOpen = isOpen;
+        this.gameOver = false;
         height = 60;
         width = 60;
     }
 
-    public boolean isOpen() {
-        return isOpen;
+    @Override
+    public void onCollide(GameObject o) {
+        if (o.matches(Predicate.IS_PLAYER)) {
+            gameOver = true;
+        }
     }
 
     @Override
@@ -50,6 +55,9 @@ public class Goal extends Collider implements GameObject {
 
     @Override
     public boolean matches(Predicate p) {
+        if (p.equals(Predicate.GAME_OVER)) {
+            return gameOver;
+        }
         return predicate.equals(p);
     }
 }
