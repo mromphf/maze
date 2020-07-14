@@ -8,17 +8,33 @@ import java.util.stream.Collectors;
 
 public class LoadsLevels {
 
-    public static Collection<GameObject> generateTiles(Map<Integer, List<Character>> symbols) {
+    public static Collection<GameObject> generateStaticTiles(Map<Integer, List<Character>> symbols) {
         List<GameObject> tiles = new ArrayList<>();
 
         for (int horizontal = 0; horizontal < symbols.keySet().size(); horizontal++) {
             for (int vertical = 0; vertical < symbols.get(horizontal).size(); vertical++) {
                 Character symbol = symbols.get(horizontal).get(vertical);
-                tiles.add(Factory.buildTile(symbol, vertical, horizontal));
+                tiles.add(Factory.buildStaticTile(symbol, vertical, horizontal));
             }
         }
 
         return tiles;
+    }
+
+    public static Collection<GameObject> generateDynamicTiles(Map<Integer, List<Character>> symbols) {
+        List<Optional<GameObject>> tiles = new ArrayList<>();
+
+        for (int horizontal = 0; horizontal < symbols.keySet().size(); horizontal++) {
+            for (int vertical = 0; vertical < symbols.get(horizontal).size(); vertical++) {
+                Character symbol = symbols.get(horizontal).get(vertical);
+                tiles.add(Factory.buildDynamicTile(symbol, vertical, horizontal));
+            }
+        }
+
+        return tiles.stream()
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .collect(Collectors.toSet());
     }
 
     public static Collection<MovableGameObject> generateActors(Map<Integer, List<Character>> symbols) {

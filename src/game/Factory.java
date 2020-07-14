@@ -9,20 +9,27 @@ import java.util.Optional;
 public class Factory {
 
     private static final int TILE_SIZE = 60;
-    private static final int TILE_OFFSET = 7;
+    private static final int TILE_OFFSET = 13;
 
-    public static GameObject buildTile(Character symbol, int vertical, int horizontal) {
+    public static GameObject buildStaticTile(Character symbol, int vertical, int horizontal) {
         switch (symbol) {
             case 'b':
                 return new Block(vertical * TILE_SIZE, horizontal * TILE_SIZE);
             case 's':
                 return new Start(vertical * TILE_SIZE, horizontal * TILE_SIZE);
-            case 'g':
-                return new Goal(vertical * TILE_SIZE, horizontal * TILE_SIZE, false);
-            case 'x':
-                return new Switch(vertical * TILE_SIZE, horizontal * TILE_SIZE);
             default:
                 return new Empty(vertical * TILE_SIZE, horizontal * TILE_SIZE);
+        }
+    }
+
+    public static Optional<GameObject> buildDynamicTile(Character symbol, int vertical, int horizontal) {
+        switch (symbol) {
+            case 'g':
+                return Optional.of(new Goal(vertical * TILE_SIZE, horizontal * TILE_SIZE, false));
+            case 'x':
+                return Optional.of(new Switch(vertical * TILE_SIZE, horizontal * TILE_SIZE));
+            default:
+                return Optional.empty();
         }
     }
 
