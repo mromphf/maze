@@ -58,12 +58,14 @@ public class GameLoop extends AnimationTimer {
         );
 
         dynamicTiles.forEach(t -> {
-                    t.examine(dynamicTiles);
+            t.examine(dynamicTiles);
 
-                    if (player.collidesWith(t)) {
-                        t.onCollide(player);
-                    }
-                });
+            actors.forEach(a -> {
+                if (a.collidesWith(t)) {
+                    t.onCollide(a);
+                }
+            });
+        });
 
         actors.stream()
                 .filter(a -> a.matches(Predicate.IS_ENEMY))
