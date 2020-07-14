@@ -3,7 +3,6 @@ package game;
 import game.abstraction.GameObject;
 import game.abstraction.MovableGameObject;
 import game.abstraction.Predicate;
-import game.concrete.Player;
 
 import io.Controller;
 import io.Screen;
@@ -13,6 +12,7 @@ import javafx.animation.AnimationTimer;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -23,7 +23,6 @@ public class GameLoop extends AnimationTimer {
     private final Collection<GameObject> staticTiles;
     private final Collection<GameObject> dynamicTiles;
     private final Collection<MovableGameObject> actors;
-    private final Player player;
     private final Controller parent;
 
     public GameLoop(Controller parent, Screen screen, Map<Integer, List<Character>> levelFile) {
@@ -34,11 +33,6 @@ public class GameLoop extends AnimationTimer {
         this.actors = LoadsLevels.generateActors(levelFile);
 
         screen.drawOnBackground(staticTiles);
-
-        player = (Player) actors.stream()
-                .filter(m -> m.matches(Predicate.IS_PLAYER))
-                .findFirst()
-                .orElseThrow(IllegalStateException::new);
     }
 
     @Override
@@ -46,9 +40,19 @@ public class GameLoop extends AnimationTimer {
         screen.drawOnBackground(dynamicTiles);
         screen.drawOnForeground(actors);
 
-        actors.forEach(a -> a.move(
-                Stream.concat(staticTiles.stream(), dynamicTiles.stream()).collect(Collectors.toSet()))
-        );
+        Set<GameObject> allTiles = Stream
+                .concat(staticTiles.stream(), dynamicTiles.stream())
+                .collect(Collectors.toSet());
+
+        actors.forEach(a -> {
+            a.move(allTiles);
+
+            actors.forEach(otherActor -> {
+                if (a.collidesWith(otherActor)) {
+                    a.onCollide(otherActor);
+                }
+            });
+        });
 
         dynamicTiles.forEach(t -> {
             t.examine(dynamicTiles);
@@ -60,15 +64,7 @@ public class GameLoop extends AnimationTimer {
             });
         });
 
-        actors.stream()
-                .filter(a -> a.matches(Predicate.IS_ENEMY))
-                .forEach(e -> {
-            if (player.collidesWith(e)) {
-                gameOver();
-            }
-        });
-
-        if (dynamicTiles.stream().anyMatch(t -> t.matches(Predicate.GAME_OVER))) {
+        if (Stream.concat(dynamicTiles.stream(), actors.stream()).anyMatch(t -> t.matches(Predicate.GAME_OVER))) {
             gameOver();
         }
     }

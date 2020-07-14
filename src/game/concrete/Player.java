@@ -15,11 +15,13 @@ import java.util.Collection;
 public class Player extends Mover implements MovableGameObject {
 
     private final Predicate predicate = Predicate.IS_PLAYER;
+    private boolean isDead;
 
     public Player(int x, int y, int velocity) {
         super(x, y, velocity);
         height = 35;
         width = 35;
+        this.isDead = false;
     }
 
     @Override
@@ -29,7 +31,17 @@ public class Player extends Mover implements MovableGameObject {
     }
 
     @Override
+    public void onCollide(GameObject object) {
+        if (object.matches(Predicate.IS_ENEMY)) {
+            isDead = true;
+        }
+    }
+
+    @Override
     public boolean matches(Predicate p) {
+        if (p.equals(Predicate.GAME_OVER)) {
+            return isDead;
+        }
         return predicate.equals(p);
     }
 
