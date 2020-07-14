@@ -16,8 +16,8 @@ public class Goal extends Collider implements GameObject {
     public Goal(int x, int y, boolean isOpen) {
         super(x, y);
         this.isOpen = isOpen;
-        height = 50;
-        width = 50;
+        height = 60;
+        width = 60;
     }
 
     public boolean isOpen() {

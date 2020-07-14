@@ -10,8 +10,8 @@ public class Empty extends Collider implements GameObject {
 
     public Empty(int x, int y) {
         super(x, y);
-        this.width = 50;
-        this.height = 50;
+        this.width = 60;
+        this.height = 60;
     }
 
     @Override

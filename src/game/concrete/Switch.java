@@ -14,8 +14,8 @@ public class Switch extends Collider implements GameObject {
     public Switch(int x, int y) {
         super(x, y);
         this.flipped = false;
-        height = 50;
-        width = 50;
+        height = 60;
+        width = 60;
     }
 
     @Override

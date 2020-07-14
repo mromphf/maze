@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class Factory {
 
-    private static final int TILE_SIZE = 50;
+    private static final int TILE_SIZE = 60;
     private static final int TILE_OFFSET = 7;
 
     public static GameObject buildTile(Character symbol, int vertical, int horizontal) {

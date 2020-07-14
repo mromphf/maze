@@ -12,8 +12,8 @@ public class Block extends Collider implements GameObject {
 
     public Block(int x, int y) {
         super(x, y);
-        this.width = 50;
-        this.height = 50;
+        this.width = 60;
+        this.height = 60;
     }
 
     @Override
