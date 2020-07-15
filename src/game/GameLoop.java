@@ -45,6 +45,9 @@ public class GameLoop extends AnimationTimer {
                 .concat(staticTiles.stream(), dynamicTiles.stream())
                 .collect(Collectors.toSet());
 
+        screen.drawOnMidground(dynamicTiles);
+        screen.drawOnForeground(actors);
+
         actors.forEach(a -> {
             a.move(allTiles);
 

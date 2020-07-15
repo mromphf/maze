@@ -19,6 +19,9 @@ public class Controller implements Initializable {
     private Canvas foreground;
 
     @FXML
+    private Canvas midground;
+
+    @FXML
     private Canvas background;
 
     private final List<List<List<Character>>> levelData = Storage.loadLevels("data");
@@ -37,7 +40,7 @@ public class Controller implements Initializable {
         if (levelIndex + 1 > levelData.size()) {
             exit();
         }
-        Screen screen = new Screen(foreground, background);
+        Screen screen = new Screen(foreground, midground, background);
         gameLoop = new GameLoop(this, screen, levelData.get(levelIndex));
         gameLoop.start();
         levelIndex++;
