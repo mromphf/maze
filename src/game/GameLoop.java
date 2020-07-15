@@ -23,6 +23,7 @@ public class GameLoop extends AnimationTimer {
     private final Collection<Entity> dynamicTiles;
     private final Collection<Movable> actors;
     private final Controller parent;
+    private boolean paused;
 
     public GameLoop(Controller parent, Screen screen, List<List<Character>> levelFile) {
         this.screen = screen;
@@ -30,6 +31,7 @@ public class GameLoop extends AnimationTimer {
         this.staticTiles = LoadsLevels.generateStaticTiles(levelFile);
         this.dynamicTiles = LoadsLevels.generateDynamicTiles(levelFile);
         this.actors = LoadsLevels.generateActors(levelFile);
+        this.paused = false;
 
         screen.drawOnBackground(staticTiles);
     }
@@ -68,7 +70,17 @@ public class GameLoop extends AnimationTimer {
         }
     }
 
-    public void gameOver() {
+    public void pause() {
+        if (paused) {
+            paused = false;
+            start();
+        } else {
+            paused = true;
+            stop();
+        }
+    }
+
+    private void gameOver() {
         stop();
         screen.reset();
         parent.loadNextLevel();
