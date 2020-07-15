@@ -1,12 +1,12 @@
 package game.concrete;
 
-import game.abstraction.GameObject;
+import game.abstraction.Entity;
 import game.abstraction.Collider;
 import game.abstraction.Predicate;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class Switch extends Collider implements GameObject {
+public class Switch extends Collider implements Entity {
 
     private final Predicate predicate = Predicate.IS_SWITCH;
     private boolean flipped;
@@ -19,14 +19,14 @@ public class Switch extends Collider implements GameObject {
     }
 
     @Override
-    public void onCollide(GameObject target) {
+    public void onCollide(Entity target) {
         if (target.matches(Predicate.IS_PLAYER)) {
             this.flipped = true;
         }
     }
 
     @Override
-    public boolean collidesWith(GameObject c) {
+    public boolean collidesWith(Entity c) {
         return false;
     }
 

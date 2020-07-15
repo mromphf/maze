@@ -1,12 +1,12 @@
 package game.concrete;
 
-import game.abstraction.GameObject;
+import game.abstraction.Entity;
 import game.abstraction.Collider;
 import game.abstraction.Predicate;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class Start extends Collider implements GameObject {
+public class Start extends Collider implements Entity {
 
     public Start(int x, int y) {
         super(x, y);
@@ -21,7 +21,7 @@ public class Start extends Collider implements GameObject {
     }
 
     @Override
-    public boolean collidesWith(GameObject target) {
+    public boolean collidesWith(Entity target) {
         return false;
     }
 

@@ -1,6 +1,6 @@
 package game.concrete;
 
-import game.abstraction.GameObject;
+import game.abstraction.Entity;
 import game.abstraction.MovableGameObject;
 import game.abstraction.Mover;
 import game.abstraction.Predicate;
@@ -33,7 +33,7 @@ public class BouncesLeftAndRight extends Mover implements MovableGameObject {
     }
 
     @Override
-    public void move(Collection<? extends GameObject> obstacles) {
+    public void move(Collection<? extends Entity> obstacles) {
         if (goingLeft && canMoveHere(obstacles, new BouncesLeftAndRight(x - velocity, y, velocity))) {
             moveLeft();
         }

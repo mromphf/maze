@@ -1,6 +1,6 @@
 package game.concrete;
 
-import game.abstraction.GameObject;
+import game.abstraction.Entity;
 import game.abstraction.MovableGameObject;
 import game.abstraction.Mover;
 import game.abstraction.Predicate;
@@ -33,7 +33,7 @@ public class BouncesUpAndDown extends Mover implements MovableGameObject {
     }
 
     @Override
-    public void move(Collection<? extends GameObject> obstacles) {
+    public void move(Collection<? extends Entity> obstacles) {
         if (goingUp && canMoveHere(obstacles, new BouncesUpAndDown(x, y - velocity, velocity))) {
             moveUp();
         }

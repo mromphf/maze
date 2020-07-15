@@ -1,6 +1,6 @@
 package io;
 
-import game.abstraction.GameObject;
+import game.abstraction.Entity;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -31,11 +31,11 @@ public class Screen {
         background = bgCanvas.getGraphicsContext2D();
     }
 
-    public void drawOnBackground(Collection<? extends GameObject> objects) {
+    public void drawOnBackground(Collection<? extends Entity> objects) {
         objects.forEach(o -> o.draw(background));
     }
 
-    public void drawOnForeground(Collection<? extends GameObject> objects) {
+    public void drawOnForeground(Collection<? extends Entity> objects) {
         foreground.clearRect(0, 0, screenWidth, screenHeight);
         objects.forEach(o -> o.draw(foreground));
     }

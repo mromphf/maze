@@ -4,17 +4,17 @@ import javafx.scene.canvas.GraphicsContext;
 
 import java.util.Collection;
 
-public interface GameObject {
+public interface Entity {
 
     void draw(GraphicsContext context);
 
-    void onCollide(GameObject target);
+    void onCollide(Entity target);
 
-    void examine(Collection<GameObject> objects);
+    void examine(Collection<Entity> objects);
 
     boolean matches(Predicate p);
 
-    boolean collidesWith(GameObject target);
+    boolean collidesWith(Entity target);
 
     int getX();
 

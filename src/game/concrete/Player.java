@@ -1,6 +1,6 @@
 package game.concrete;
 
-import game.abstraction.GameObject;
+import game.abstraction.Entity;
 import game.abstraction.MovableGameObject;
 import game.abstraction.Mover;
 import game.abstraction.Predicate;
@@ -31,7 +31,7 @@ public class Player extends Mover implements MovableGameObject {
     }
 
     @Override
-    public void onCollide(GameObject object) {
+    public void onCollide(Entity object) {
         if (object.matches(Predicate.IS_ENEMY)) {
             isDead = true;
         }
@@ -45,7 +45,7 @@ public class Player extends Mover implements MovableGameObject {
         return predicate.equals(p);
     }
 
-    public void move(Collection<? extends GameObject> obstacles) {
+    public void move(Collection<? extends Entity> obstacles) {
         if (Keyboard.isPressed(KeyCode.LEFT) && canMoveHere(obstacles, new Player(x - velocity, y, velocity))) {
             moveLeft();
         }

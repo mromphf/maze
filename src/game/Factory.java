@@ -1,6 +1,6 @@
 package game;
 
-import game.abstraction.GameObject;
+import game.abstraction.Entity;
 import game.abstraction.MovableGameObject;
 import game.concrete.*;
 
@@ -11,7 +11,7 @@ public class Factory {
     private static final int TILE_SIZE = 60;
     private static final int TILE_OFFSET = 13;
 
-    public static GameObject buildStaticTile(Character symbol, int vertical, int horizontal) {
+    public static Entity buildStaticTile(Character symbol, int vertical, int horizontal) {
         switch (symbol) {
             case 'b':
                 return new Block(vertical * TILE_SIZE, horizontal * TILE_SIZE);
@@ -22,7 +22,7 @@ public class Factory {
         }
     }
 
-    public static Optional<GameObject> buildDynamicTile(Character symbol, int vertical, int horizontal) {
+    public static Optional<Entity> buildDynamicTile(Character symbol, int vertical, int horizontal) {
         switch (symbol) {
             case 'g':
                 return Optional.of(new Goal(vertical * TILE_SIZE, horizontal * TILE_SIZE, false));

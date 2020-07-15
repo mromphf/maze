@@ -2,6 +2,6 @@ package game.abstraction;
 
 import java.util.Collection;
 
-public interface MovableGameObject extends GameObject {
-    void move (Collection<? extends GameObject> c);
+public interface MovableGameObject extends Entity {
+    void move (Collection<? extends Entity> c);
 }

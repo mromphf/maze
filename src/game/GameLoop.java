@@ -1,6 +1,6 @@
 package game;
 
-import game.abstraction.GameObject;
+import game.abstraction.Entity;
 import game.abstraction.MovableGameObject;
 import game.abstraction.Predicate;
 
@@ -20,8 +20,8 @@ import java.util.stream.Stream;
 public class GameLoop extends AnimationTimer {
 
     private final Screen screen;
-    private final Collection<GameObject> staticTiles;
-    private final Collection<GameObject> dynamicTiles;
+    private final Collection<Entity> staticTiles;
+    private final Collection<Entity> dynamicTiles;
     private final Collection<MovableGameObject> actors;
     private final Controller parent;
 
@@ -40,7 +40,7 @@ public class GameLoop extends AnimationTimer {
         screen.drawOnBackground(dynamicTiles);
         screen.drawOnForeground(actors);
 
-        Set<GameObject> allTiles = Stream
+        Set<Entity> allTiles = Stream
                 .concat(staticTiles.stream(), dynamicTiles.stream())
                 .collect(Collectors.toSet());
 

@@ -13,16 +13,16 @@ public abstract class Collider extends Root {
           this.y = y;
      }
 
-     public void onCollide(GameObject target) {}
+     public void onCollide(Entity target) {}
 
-     public boolean collidesWith(GameObject target) {
+     public boolean collidesWith(Entity target) {
           return (this.x < target.getX() + target.getWidth() &&
                   this.x + this.getWidth() > target.getX() &&
                   this.y < target.getY() + target.getHeight() &&
                   this.y + this.getHeight() > target.getY());
      }
 
-     public boolean collidesWith(Collection<? extends GameObject> targets) {
+     public boolean collidesWith(Collection<? extends Entity> targets) {
           return targets.stream().anyMatch(this::collidesWith);
      }
 

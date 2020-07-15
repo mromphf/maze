@@ -1,6 +1,6 @@
 package game.concrete;
 
-import game.abstraction.GameObject;
+import game.abstraction.Entity;
 import game.abstraction.Collider;
 import game.abstraction.Predicate;
 import javafx.scene.canvas.GraphicsContext;
@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 
 import java.util.Collection;
 
-public class Goal extends Collider implements GameObject {
+public class Goal extends Collider implements Entity {
 
     private final Predicate predicate = Predicate.IS_GOAL;
     private boolean gameOver;
@@ -23,7 +23,7 @@ public class Goal extends Collider implements GameObject {
     }
 
     @Override
-    public void onCollide(GameObject o) {
+    public void onCollide(Entity o) {
         if (o.matches(Predicate.IS_PLAYER)) {
             gameOver = true;
         }
@@ -37,7 +37,7 @@ public class Goal extends Collider implements GameObject {
     }
 
     @Override
-    public void examine(Collection<GameObject> c) {
+    public void examine(Collection<Entity> c) {
         int all_switches = (int) c.stream().filter(o -> o.matches(Predicate.IS_SWITCH)).count();
         int switches_flipped = (int) c.stream().filter(o -> o.matches(Predicate.SWITCH_FLIPPED)).count();
         if (all_switches == switches_flipped) {
@@ -46,7 +46,7 @@ public class Goal extends Collider implements GameObject {
     }
 
     @Override
-    public boolean collidesWith(GameObject c) {
+    public boolean collidesWith(Entity c) {
         if (isOpen) {
             return false;
         }

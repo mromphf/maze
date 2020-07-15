@@ -1,6 +1,6 @@
 package game;
 
-import game.abstraction.GameObject;
+import game.abstraction.Entity;
 import game.abstraction.MovableGameObject;
 
 import java.util.*;
@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 
 public class LoadsLevels {
 
-    public static Collection<GameObject> generateStaticTiles(Map<Integer, List<Character>> symbols) {
-        List<GameObject> tiles = new ArrayList<>();
+    public static Collection<Entity> generateStaticTiles(Map<Integer, List<Character>> symbols) {
+        List<Entity> tiles = new ArrayList<>();
 
         for (int horizontal = 0; horizontal < symbols.keySet().size(); horizontal++) {
             for (int vertical = 0; vertical < symbols.get(horizontal).size(); vertical++) {
@@ -21,8 +21,8 @@ public class LoadsLevels {
         return tiles;
     }
 
-    public static Collection<GameObject> generateDynamicTiles(Map<Integer, List<Character>> symbols) {
-        List<Optional<GameObject>> tiles = new ArrayList<>();
+    public static Collection<Entity> generateDynamicTiles(Map<Integer, List<Character>> symbols) {
+        List<Optional<Entity>> tiles = new ArrayList<>();
 
         for (int horizontal = 0; horizontal < symbols.keySet().size(); horizontal++) {
             for (int vertical = 0; vertical < symbols.get(horizontal).size(); vertical++) {

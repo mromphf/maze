@@ -1,12 +1,12 @@
 package game.concrete;
 
 import game.abstraction.Collider;
-import game.abstraction.GameObject;
+import game.abstraction.Entity;
 import game.abstraction.Predicate;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class Block extends Collider implements GameObject {
+public class Block extends Collider implements Entity {
 
     private final Image blockImg = new Image(getClass().getResourceAsStream("../../brown-block.png"));
 
