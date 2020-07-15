@@ -17,6 +17,8 @@ public class Factory {
                 return new Block(vertical * TILE_SIZE, horizontal * TILE_SIZE);
             case 's':
                 return new Start(vertical * TILE_SIZE, horizontal * TILE_SIZE);
+            case 'p':
+                return new Pit(vertical * TILE_SIZE, horizontal * TILE_SIZE);
             default:
                 return new Empty(vertical * TILE_SIZE, horizontal * TILE_SIZE);
         }
