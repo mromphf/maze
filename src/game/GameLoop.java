@@ -38,8 +38,8 @@ public class GameLoop extends AnimationTimer {
 
     @Override
     public void handle(long now) {
-        screen.drawOnBackground(dynamicTiles);
-        screen.drawOnForeground(actors);
+        Collection<Entity> actorsAndDynamicTiles = Stream.concat(dynamicTiles.stream(), actors.stream())
+                .collect(Collectors.toSet());
 
         Set<Entity> allTiles = Stream
                 .concat(staticTiles.stream(), dynamicTiles.stream())
@@ -68,7 +68,7 @@ public class GameLoop extends AnimationTimer {
             });
         });
 
-        if (Stream.concat(dynamicTiles.stream(), actors.stream()).anyMatch(t -> t.matches(Predicate.GAME_OVER))) {
+        if (actorsAndDynamicTiles.stream().anyMatch(t -> t.matches(Predicate.GAME_OVER))) {
             gameOver();
         }
     }

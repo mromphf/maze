@@ -28,6 +28,12 @@ public class Factory {
                 return Optional.of(new Goal(vertical * TILE_SIZE, horizontal * TILE_SIZE, false));
             case 'x':
                 return Optional.of(new Switch(vertical * TILE_SIZE, horizontal * TILE_SIZE));
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+                int sym = symbol - '0';
+                return Optional.of(new OrderedSwitch(vertical * TILE_SIZE, horizontal * TILE_SIZE, sym));
             default:
                 return Optional.empty();
         }
