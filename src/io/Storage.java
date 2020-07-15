@@ -18,6 +18,7 @@ public class Storage {
             List<File> listOfFiles = Arrays.asList(Objects.requireNonNull(folder.listFiles()));
             return listOfFiles.stream()
                     .filter(File::isFile)
+                    .sorted()
                     .map(f -> loadLevel(f.getPath()))
                     .collect(Collectors.toList());
         }
