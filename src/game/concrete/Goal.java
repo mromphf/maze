@@ -14,12 +14,12 @@ public class Goal extends Collider implements Entity {
     private boolean gameOver;
     private boolean isOpen;
 
-    public Goal(int x, int y, boolean isOpen) {
+    public Goal(int x, int y, int width, int height, boolean isOpen) {
         super(x, y);
         this.isOpen = isOpen;
         this.gameOver = false;
-        height = 60;
-        width = 60;
+        this.height = height;
+        this.width = width;
     }
 
     @Override

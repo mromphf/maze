@@ -11,11 +11,11 @@ public class Switch extends Collider implements Entity {
     private final Predicate predicate = Predicate.IS_SWITCH;
     private boolean flipped;
 
-    public Switch(int x, int y) {
+    public Switch(int x, int y, int width, int height) {
         super(x, y);
         this.flipped = false;
-        height = 60;
-        width = 60;
+        this.height = height;
+        this.width = width;
     }
 
     @Override

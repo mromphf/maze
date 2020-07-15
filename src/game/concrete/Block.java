@@ -10,15 +10,15 @@ public class Block extends Collider implements Entity {
 
     private final Image blockImg = new Image(getClass().getResourceAsStream("../../brown-block.png"));
 
-    public Block(int x, int y) {
+    public Block(int x, int y, int width, int height) {
         super(x, y);
-        this.width = 60;
-        this.height = 60;
+        this.height = height;
+        this.width = width;
     }
 
     @Override
     public void draw(GraphicsContext context) {
-        context.drawImage(blockImg, x, y, width, width);
+        context.drawImage(blockImg, x, y, width, height);
     }
 
     @Override

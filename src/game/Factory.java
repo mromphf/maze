@@ -14,28 +14,28 @@ public class Factory {
     public static Entity buildStaticTile(Character symbol, int vertical, int horizontal) {
         switch (symbol) {
             case 'b':
-                return new Block(vertical * TILE_SIZE, horizontal * TILE_SIZE);
+                return new Block(vertical * TILE_SIZE, horizontal * TILE_SIZE, TILE_SIZE, TILE_SIZE);
             case 's':
-                return new Start(vertical * TILE_SIZE, horizontal * TILE_SIZE);
+                return new Start(vertical * TILE_SIZE, horizontal * TILE_SIZE, TILE_SIZE, TILE_SIZE);
             case 'p':
-                return new Pit(vertical * TILE_SIZE, horizontal * TILE_SIZE);
+                return new Pit(vertical * TILE_SIZE, horizontal * TILE_SIZE, TILE_SIZE, TILE_SIZE);
             default:
-                return new Empty(vertical * TILE_SIZE, horizontal * TILE_SIZE);
+                return new Empty(vertical * TILE_SIZE, horizontal * TILE_SIZE, TILE_SIZE, TILE_SIZE);
         }
     }
 
     public static Optional<Entity> buildDynamicTile(Character symbol, int vertical, int horizontal) {
         switch (symbol) {
             case 'g':
-                return Optional.of(new Goal(vertical * TILE_SIZE, horizontal * TILE_SIZE, false));
+                return Optional.of(new Goal(vertical * TILE_SIZE, horizontal * TILE_SIZE, TILE_SIZE, TILE_SIZE, false));
             case 'x':
-                return Optional.of(new Switch(vertical * TILE_SIZE, horizontal * TILE_SIZE));
+                return Optional.of(new Switch(vertical * TILE_SIZE, horizontal * TILE_SIZE, TILE_SIZE, TILE_SIZE));
             case '1':
             case '2':
             case '3':
             case '4':
-                int sym = symbol - '0';
-                return Optional.of(new OrderedSwitch(vertical * TILE_SIZE, horizontal * TILE_SIZE, sym));
+                int ordinal = symbol - '0';
+                return Optional.of(new OrderedSwitch(vertical * TILE_SIZE, horizontal * TILE_SIZE, TILE_SIZE, TILE_SIZE, ordinal));
             default:
                 return Optional.empty();
         }

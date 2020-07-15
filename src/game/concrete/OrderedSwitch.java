@@ -16,10 +16,10 @@ public class OrderedSwitch extends Collider implements Entity {
     private final int ordinal;
     private boolean flipped;
 
-    public OrderedSwitch(int x, int y, int ordinal) {
+    public OrderedSwitch(int x, int y, int width, int height, int ordinal) {
         super(x, y);
-        this.height = 60;
-        this.width = 60;
+        this.height = height;
+        this.width = width;
         this.ordinal = ordinal;
         this.predicate = Predicate.IS_SWITCH;
     }
