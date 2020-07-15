@@ -11,7 +11,6 @@ import javafx.animation.AnimationTimer;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -25,7 +24,7 @@ public class GameLoop extends AnimationTimer {
     private final Collection<Movable> actors;
     private final Controller parent;
 
-    public GameLoop(Controller parent, Screen screen, Map<Integer, List<Character>> levelFile) {
+    public GameLoop(Controller parent, Screen screen, List<List<Character>> levelFile) {
         this.screen = screen;
         this.parent = parent;
         this.staticTiles = LoadsLevels.generateStaticTiles(levelFile);

@@ -1,7 +1,6 @@
 package io;
 
 import game.GameLoop;
-import game.LoadsLevels;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -9,7 +8,6 @@ import javafx.scene.input.KeyEvent;
 
 import java.net.URL;
 import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import static javafx.application.Platform.exit;
@@ -22,7 +20,7 @@ public class Controller implements Initializable {
     @FXML
     private Canvas background;
 
-    private final List<Map<Integer, List<Character>>> levelData = Storage.loadLevels("data");
+    private final List<List<List<Character>>> levelData = Storage.loadLevels("data");
 
     private int levelIndex = 0;
 
