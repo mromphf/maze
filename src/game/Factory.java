@@ -8,8 +8,8 @@ import java.util.Optional;
 
 public class Factory {
 
-    private static final int TILE_SIZE = 60;
-    private static final int TILE_OFFSET = 13;
+    private static final int TILE_SIZE = 55;
+    private static final int TILE_OFFSET = 10;
 
     public static Entity buildStaticTile(Character symbol, int vertical, int horizontal) {
         switch (symbol) {
