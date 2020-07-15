@@ -2,7 +2,7 @@ package game.abstraction;
 
 import java.util.Collection;
 
-public abstract class Entity {
+public abstract class Root {
 
     public void examine(Collection<GameObject> c) {}
 

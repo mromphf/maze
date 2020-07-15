@@ -2,7 +2,7 @@ package game.abstraction;
 
 import java.util.Collection;
 
-public abstract class Collider extends Entity {
+public abstract class Collider extends Root {
      protected int x;
      protected int y;
      protected int height;
