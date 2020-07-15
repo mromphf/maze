@@ -1,6 +1,9 @@
-package io;
+package ui;
 
 import game.GameLoop;
+import io.Keyboard;
+import io.Screen;
+import io.Storage;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;

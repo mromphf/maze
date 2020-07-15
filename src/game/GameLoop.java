@@ -4,7 +4,7 @@ import game.abstraction.Entity;
 import game.abstraction.Movable;
 import game.abstraction.Predicate;
 
-import io.Controller;
+import ui.Controller;
 import io.Screen;
 
 import javafx.animation.AnimationTimer;
