@@ -1,7 +1,7 @@
 package game;
 
 import game.abstraction.Entity;
-import game.abstraction.MovableGameObject;
+import game.abstraction.Movable;
 import game.concrete.*;
 
 import java.util.Optional;
@@ -33,7 +33,7 @@ public class Factory {
         }
     }
 
-    public static Optional<MovableGameObject> buildActor(Character symbol, int x, int y) {
+    public static Optional<Movable> buildActor(Character symbol, int x, int y) {
         switch (symbol) {
             case 's':
                 return Optional.of(new Player(

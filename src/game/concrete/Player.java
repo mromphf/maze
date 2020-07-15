@@ -1,7 +1,7 @@
 package game.concrete;
 
 import game.abstraction.Entity;
-import game.abstraction.MovableGameObject;
+import game.abstraction.Movable;
 import game.abstraction.Mover;
 import game.abstraction.Predicate;
 import io.Keyboard;
@@ -12,7 +12,7 @@ import javafx.scene.shape.ArcType;
 
 import java.util.Collection;
 
-public class Player extends Mover implements MovableGameObject {
+public class Player extends Mover implements Movable {
 
     private final Predicate predicate = Predicate.IS_PLAYER;
     private boolean isDead;

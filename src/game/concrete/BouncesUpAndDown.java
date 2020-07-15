@@ -1,7 +1,7 @@
 package game.concrete;
 
 import game.abstraction.Entity;
-import game.abstraction.MovableGameObject;
+import game.abstraction.Movable;
 import game.abstraction.Mover;
 import game.abstraction.Predicate;
 import javafx.scene.canvas.GraphicsContext;
@@ -10,7 +10,7 @@ import javafx.scene.shape.ArcType;
 
 import java.util.Collection;
 
-public class BouncesUpAndDown extends Mover implements MovableGameObject {
+public class BouncesUpAndDown extends Mover implements Movable {
 
     private final Predicate predicate = Predicate.IS_ENEMY;
     private boolean goingUp = true;

@@ -1,7 +1,7 @@
 package game;
 
 import game.abstraction.Entity;
-import game.abstraction.MovableGameObject;
+import game.abstraction.Movable;
 import game.abstraction.Predicate;
 
 import io.Controller;
@@ -22,7 +22,7 @@ public class GameLoop extends AnimationTimer {
     private final Screen screen;
     private final Collection<Entity> staticTiles;
     private final Collection<Entity> dynamicTiles;
-    private final Collection<MovableGameObject> actors;
+    private final Collection<Movable> actors;
     private final Controller parent;
 
     public GameLoop(Controller parent, Screen screen, Map<Integer, List<Character>> levelFile) {
