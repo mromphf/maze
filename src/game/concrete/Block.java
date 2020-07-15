@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 
 public class Block extends Collider implements Entity {
 
-    private final Image blockImg = new Image(getClass().getResourceAsStream("../../brown-block.png"));
+    private final Image blockImg = new Image("file:data/graphics/brown-block.png");
 
     public Block(int x, int y, int width, int height) {
         super(x, y);

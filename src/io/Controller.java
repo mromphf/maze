@@ -24,7 +24,7 @@ public class Controller implements Initializable {
     @FXML
     private Canvas background;
 
-    private final List<List<List<Character>>> levelData = Storage.loadLevels("data");
+    private final List<List<List<Character>>> levelData = Storage.loadLevels("data/levels");
 
     private GameLoop gameLoop;
 
