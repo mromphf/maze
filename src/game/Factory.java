@@ -30,6 +30,14 @@ public class Factory {
                 return Optional.of(new Goal(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE, false));
             case 'x':
                 return Optional.of(new Switch(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE));
+            case 'o':
+                return Optional.of(new OrangeSwitch(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE));
+            case 'q':
+                return Optional.of(new OrangeBarrier(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE));
+            case 'n':
+                return Optional.of(new BlueSwitch(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE));
+            case 'w':
+                return Optional.of(new BlueBarrier(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE));
             case '1':
             case '2':
             case '3':
