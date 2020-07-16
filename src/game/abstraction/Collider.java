@@ -8,9 +8,11 @@ public abstract class Collider extends Root {
      protected int height;
      protected int width;
 
-     public Collider(int x, int y) {
+     public Collider(int x, int y, int width, int height) {
           this.x = x;
           this.y = y;
+          this.height = height;
+          this.width = width;
      }
 
      public void onCollide(Entity target) {}

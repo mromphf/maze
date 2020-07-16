@@ -6,8 +6,8 @@ public abstract class Mover extends Collider {
 
     protected final int velocity;
 
-    public Mover(int x, int y, int velocity) {
-        super(x, y);
+    public Mover(int x, int y, int width, int height, int velocity) {
+        super(x, y, width, height);
         this.velocity = velocity;
     }
 

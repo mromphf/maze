@@ -9,9 +9,7 @@ import javafx.scene.paint.Color;
 public class Start extends Collider implements Entity {
 
     public Start(int x, int y, int width, int height) {
-        super(x, y);
-        this.width = width;
-        this.height = height;
+        super(x, y, width, height);
     }
 
     @Override

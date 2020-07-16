@@ -17,9 +17,7 @@ public class OrderedSwitch extends Collider implements Entity {
     private boolean flipped;
 
     public OrderedSwitch(int x, int y, int width, int height, int ordinal) {
-        super(x, y);
-        this.height = height;
-        this.width = width;
+        super(x, y, width, height);
         this.ordinal = ordinal;
         this.predicate = Predicate.IS_SWITCH;
     }

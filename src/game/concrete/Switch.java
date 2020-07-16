@@ -12,10 +12,8 @@ public class Switch extends Collider implements Entity {
     private boolean flipped;
 
     public Switch(int x, int y, int width, int height) {
-        super(x, y);
+        super(x, y, width, height);
         this.flipped = false;
-        this.height = height;
-        this.width = width;
     }
 
     @Override

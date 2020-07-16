@@ -11,9 +11,7 @@ public class Block extends Collider implements Entity {
     private final Image blockImg = new Image("file:data/graphics/brown-block.png");
 
     public Block(int x, int y, int width, int height) {
-        super(x, y);
-        this.height = height;
-        this.width = width;
+        super(x, y, width, height);
     }
 
     @Override

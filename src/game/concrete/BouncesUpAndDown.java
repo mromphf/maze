@@ -15,10 +15,8 @@ public class BouncesUpAndDown extends Mover implements Movable {
     private final Predicate predicate = Predicate.IS_ENEMY;
     private boolean goingUp = true;
 
-    public BouncesUpAndDown(int x, int y, int velocity) {
-        super(x, y, velocity);
-        height = 35;
-        width = 35;
+    public BouncesUpAndDown(int x, int y, int width, int height, int velocity) {
+        super(x, y, width, height, velocity);
     }
 
     @Override
@@ -34,18 +32,18 @@ public class BouncesUpAndDown extends Mover implements Movable {
 
     @Override
     public void move(Collection<? extends Entity> obstacles) {
-        if (goingUp && canMoveHere(obstacles, new BouncesUpAndDown(x, y - velocity, velocity))) {
+        if (goingUp && canMoveHere(obstacles, new BouncesUpAndDown(x, y - velocity, width, height, velocity))) {
             moveUp();
         }
-        else if (!goingUp && !canMoveHere(obstacles, new BouncesUpAndDown(x, y + velocity, velocity))) {
+        else if (!goingUp && !canMoveHere(obstacles, new BouncesUpAndDown(x, y + velocity, width, height, velocity))) {
             goingUp = true;
             moveUp();
         }
-        else if (goingUp && !canMoveHere(obstacles, new BouncesUpAndDown(x, y - velocity, velocity))) {
+        else if (goingUp && !canMoveHere(obstacles, new BouncesUpAndDown(x, y - velocity, width, height, velocity))) {
             goingUp = false;
             moveDown();
         }
-        else if (!goingUp && canMoveHere(obstacles, new BouncesUpAndDown(x, y + velocity, velocity))) {
+        else if (!goingUp && canMoveHere(obstacles, new BouncesUpAndDown(x, y + velocity, width, height, velocity))) {
             moveDown();
         }
     }

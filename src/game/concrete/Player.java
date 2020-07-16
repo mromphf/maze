@@ -17,10 +17,8 @@ public class Player extends Mover implements Movable {
     private final Predicate predicate = Predicate.IS_PLAYER;
     private boolean isDead;
 
-    public Player(int x, int y, int velocity) {
-        super(x, y, velocity);
-        height = 35;
-        width = 35;
+    public Player(int x, int y, int width, int height, int velocity) {
+        super(x, y, width, height, velocity);
         this.isDead = false;
     }
 
@@ -46,16 +44,16 @@ public class Player extends Mover implements Movable {
     }
 
     public void move(Collection<? extends Entity> obstacles) {
-        if (Keyboard.isPressed(KeyCode.LEFT) && canMoveHere(obstacles, new Player(x - velocity, y, velocity))) {
+        if (Keyboard.isPressed(KeyCode.LEFT) && canMoveHere(obstacles, new Player(x - velocity, y, width, height, velocity))) {
             moveLeft();
         }
-        else if (Keyboard.isPressed(KeyCode.RIGHT) && canMoveHere(obstacles, new Player(x + velocity, y, velocity))) {
+        else if (Keyboard.isPressed(KeyCode.RIGHT) && canMoveHere(obstacles, new Player(x + velocity, y, width, height, velocity))) {
             moveRight();
         }
-        else if (Keyboard.isPressed(KeyCode.UP) && canMoveHere(obstacles, new Player(x, y - velocity, velocity))) {
+        else if (Keyboard.isPressed(KeyCode.UP) && canMoveHere(obstacles, new Player(x, y - velocity, width, height, velocity))) {
             moveUp();
         }
-        else if (Keyboard.isPressed(KeyCode.DOWN) && canMoveHere(obstacles, new Player(x, y + velocity, velocity))) {
+        else if (Keyboard.isPressed(KeyCode.DOWN) && canMoveHere(obstacles, new Player(x, y + velocity, width, height, velocity))) {
             moveDown();
         }
     }

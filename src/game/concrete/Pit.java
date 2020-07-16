@@ -9,9 +9,7 @@ import javafx.scene.paint.Color;
 public class Pit extends Collider implements Entity {
 
     public Pit(int x, int y, int width, int height) {
-        super(x, y);
-        this.height = height;
-        this.width = width;
+        super(x, y, width, height);
     }
 
     @Override
